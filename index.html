@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>中小学知识点学习平台</title>
+    <title>中小学知识点学习平台 - 7年级下学期</title>
     <style>
         * {
             margin: 0;
@@ -17,10 +17,16 @@
             --success-color: #27ae60;
             --warning-color: #f39c12;
             --danger-color: #e74c3c;
+;
             --light-bg: #ecf0f1;
             --white: #ffffff;
             --text-primary: #2c3e50;
             --text-secondary: #7f8c8d;
+            --chinese-color: #e74c3c;
+            --math-color: #3498db;
+            --english-color: #27ae60;
+            --history-color: #f39c12;
+            --geography-color: #9b59b6;
         }
 
         body {
@@ -32,7 +38,7 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             background: var(--white);
             border-radius: 30px;
@@ -62,9 +68,24 @@
             opacity: 0.9;
         }
 
+        .stats-bar {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.95em;
+        }
+
         /* Grade Selector */
         .grade-selector {
-            padding: 25px 40px;
+            padding: 20px 40px;
             background: var(--light-bg);
             display: flex;
             justify-content: center;
@@ -102,28 +123,63 @@
             gap: 10px;
             padding: 20px 40px;
             background: var(--white);
+            flex-wrap: wrap;
         }
 
         .subject-tab {
-            padding: 10px 20px;
+            padding: 12px 24px;
             border: 2px solid var(--accent-color);
             background: transparent;
             color: var(--accent-color);
-            border-radius: 20px;
+            border-radius: 25px;
             cursor: pointer;
             font-size: 0.95em;
             font-weight: 600;
             transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .subject-tab:hover {
-            background: var(--accent-color);
-            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
         }
 
         .subject-tab.active {
-            background: var(--accent-color);
             color: white;
+        }
+
+        .subject-tab[data-subject="chinese"].active {
+            background: var(--chinese-color);
+            border-color: var(--chinese-color);
+        }
+
+        .subject-tab[data-subject="math"].active {
+            background: var(--math-color);
+            border-color: var(--math-color);
+        }
+
+        .subject-tab[data-subject="english"].active {
+            background: var(--english-color);
+            border-color: var(--english-color);
+        }
+
+        .subject-tab[data-subject="history"].active {
+            background: var(--history-color);
+            border-color: var(--history-color);
+        }
+
+        .subject-tab[data-subject="geography"].active {
+            background: var(--geography-color);
+            border-color: var(--geography-color);
+        }
+
+        .knowledge-count {
+            background: rgba(255,255,255,0.3);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.85em;
         }
 
         /* Slide Container */
@@ -131,7 +187,7 @@
             flex: 1;
             position: relative;
             overflow: hidden;
-            padding: 40px;
+            padding: 30px 40px;
         }
 
         .slides-wrapper {
@@ -160,6 +216,8 @@
             box-shadow: 0 10px 40px rgba(0,0,0,0.1);
             height: 100%;
             border: 1px solid #e0e0e0;
+            max-height: calc(90vh - 400px);
+            overflow-y: auto;
         }
 
         .slide-card h3 {
@@ -168,6 +226,9 @@
             margin-bottom: 20px;
             padding-bottom: 15px;
             border-bottom: 3px solid var(--accent-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
         .slide-card h4 {
@@ -361,6 +422,37 @@
             margin-right: 15px;
         }
 
+        /* Quick Jump */
+        .quick-jump {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quick-jump input {
+            width: 60px;
+            padding: 8px 12px;
+            border: 2px solid var(--accent-color);
+            border-radius: 20px;
+            text-align: center;
+            font-size: 1em;
+        }
+
+        .quick-jump button {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .quick-jump button:hover {
+            background: #2980b9;
+        }
+
         /* Export Buttons */
         .export-buttons {
             display: flex;
@@ -410,6 +502,13 @@
             opacity: 0.9;
         }
 
+        /* Subject Colors */
+        .subject-chinese { --current-color: var(--chinese-color); }
+        .subject-math { --current-color: var(--math-color); }
+        .subject-english { --current-color: var(--english-color); }
+        .subject-history { --current-color: var(--history-color); }
+        .subject-geography { --current-color: var(--geography-color); }
+
         /* Responsive */
         @media (max-width: 768px) {
             .container {
@@ -434,15 +533,24 @@
 
             .slide-card {
                 padding: 20px;
+                max-height: calc(90vh - 500px);
             }
 
             .slide-nav {
                 padding: 15px 20px;
+                flex-wrap: wrap;
+                gap: 10px;
             }
 
             .nav-btn {
                 padding: 10px 20px;
                 font-size: 0.9em;
+            }
+
+            .quick-jump {
+                order: 3;
+                width: 100%;
+                justify-content: center;
             }
         }
 
@@ -477,19 +585,37 @@
     <div class="container">
         <header>
             <h1>📚 中小学知识点学习平台</h1>
-            <p class="subtitle">专业 · 系统 · 高效</p>
+            <p class="subtitle">专业 · 系统 · 高效 · 每一页一个知识点</p>
+            <div class="stats-bar">
+                <div class="stat-item" id="totalStats">总知识点：209个</div>
+                <div class="stat-item" id="currentStats">当前科目：90个</div>
+            </div>
         </header>
 
         <div class="grade-selector">
             <button class="grade-btn" onclick="selectGrade('grade2')">2年级下</button>
             <button class="grade-btn" onclick="selectGrade('grade7a')">7年级上</button>
             <button class="grade-btn active" onclick="selectGrade('grade7b')">7年级下</button>
+            <button class="grade-btn" onclick="selectGrade('grade8a')">8年级上</button>
+            <button class="grade-btn" onclick="selectGrade('grade8b')">8年级下</button>
         </div>
 
         <div class="subject-tabs">
-            <button class="subject-tab" onclick="selectSubject('chinese')">📖 语文</button>
-            <button class="subject-tab" onclick="selectSubject('math')">🔢 数学</button>
-            <button class="subject-tab" onclick="selectSubject('english')">🇬🇧 英语</button>
+            <button class="subject-tab active" data-subject="chinese" onclick="selectSubject('chinese')">
+                📖 语文 <span class="knowledge-count" id="count-chinese">0</span>
+            </button>
+            <button class="subject-tab" data-subject="math" onclick="selectSubject('math')">
+                🔢 数学 <span class="knowledge-count" id="count-math">0</span>
+            </button>
+            <button class="subject-tab" data-subject="english" onclick="selectSubject('english')">
+                🇬🇧 英语 <span class="knowledge-count" id="count-english">0</span>
+            </button>
+            <button class="subject-tab" data-subject="history" onclick="selectSubject('history')">
+                📜 历史 <span class="knowledge-count" id="count-history">0</span>
+            </button>
+            <button class="subject-tab" data-subject="geography" onclick="selectSubject('geography')">
+                🌍 地理 <span class="knowledge-count" id="count-geography">0</span>
+            </button>
         </div>
 
         <div class="slide-container">
@@ -503,6 +629,10 @@
                 ← 上一页
             </button>
             <div class="progress-indicator">
+                <div class="quick-jump">
+                    <input type="number" id="jumpInput" min="1" placeholder="1">
+                    <button onclick="jumpToSlide()">跳转</button>
+                </div>
                 <span class="slide-counter" id="slideCounter">1 / 1</span>
                 <div class="progress-dots" id="progressDots"></div>
             </div>
@@ -521,697 +651,123 @@
         </div>
 
         <footer>
-            <p>📚 中小学知识点学习平台 | 多年级覆盖 | 拔高训练 | 在线练习</p>
+            <p>📚 中小学知识点学习平台 | 5门科目 | 209个知识点 | 每页一个知识点</p>
             <p>最后更新：2026年3月 | Made with ❤️ for students</p>
         </footer>
     </div>
 
+    <!-- Load knowledge base files -->
+    <script src="knowledge-base-grade7b-chinese-extended.js"></script>
+    <script src="knowledge-base-grade7b-math-complete.js"></script>
+    <script src="knowledge-base-grade7b-english.js"></script>
+    <script src="knowledge-base-grade7b-history.js"></script>
+    <script src="knowledge-base-grade7b-geography.js"></script>
+    
     <script>
-        // Knowledge base data
+        // Knowledge base data - 使用外部文件中的数据
+        // 辅助函数：确保数据是数组
+        function ensureArray(data) {
+            if (!data) return [];
+            if (Array.isArray(data)) return data;
+            // 如果是对象，尝试合并所有单元
+            if (typeof data === 'object') {
+                let result = [];
+                for (let key in data) {
+                    if (Array.isArray(data[key])) {
+                        result = result.concat(data[key]);
+                    }
+                }
+                return result;
+            }
+            return [];
+        }
+        
         const knowledgeData = {
+            grade7b: {
+                chinese: ensureArray(grade7bChineseKnowledge),
+                math: grade7bMathKnowledge ? ensureArray(grade7bMathKnowledge.math) : [],
+                english: ensureArray(grade7bEnglishKnowledge),
+                history: ensureArray(grade7bHistoryKnowledge),
+                geography: ensureArray(grade7bGeographyKnowledge)
+            },
             grade2: {
                 chinese: [
                     {
-                        title: "一、生字词",
+                        title: "生字词学习",
                         tag: "基础",
-                        tagClass: "important",
-                        content: `
-                            <h4>1. 多音字</h4>
-                            <p><strong>常见多音字：</strong></p>
-                            <ul>
-                                <li><strong>乐：</strong>lè（快乐）、yuè（音乐）</li>
-                                <li><strong>长：</strong>cháng（长短）、zhǎng（成长）</li>
-                                <li><strong>种：</strong>zhǒng（种子）、zhòng（种树）</li>
-                                <li><strong>发：</strong>fā（发现）、fà（头发）</li>
-                            </ul>
-                            <div class="advanced">
-                                <h4>⭐ 拔高内容</h4>
-                                <p><strong>多音字辨析技巧：</strong></p>
-                                <ul>
-                                    <li>根据词性判断：动词读音vs名词读音</li>
-                                    <li>根据语境判断：结合句子意思确定读音</li>
-                                    <li>积累特殊用法：记住常见的固定搭配</li>
-                                </ul>
-                                <div class="example">
-                                    <strong>例题：</strong>给下列多音字注音<br>
-                                    1. 音乐（）给人带来快乐（）。<br>
-                                    2. 这棵树长（）得很高，叶子长（）而尖。<br>
-                                    3. 我种（）了一颗种（）子。<br>
-                                    <button class="show-answer" onclick="toggleAnswer(this)">查看答案</button>
-                                    <div class="answer">
-                                        1. yuè、lè<br>
-                                        2. zhǎng、cháng<br>
-                                        3. zhòng、zhǒng
-                                    </div>
-                                </div>
-                            </div>
-                        `
-                    },
-                    {
-                        title: "二、句子训练",
-                        tag: "重点",
-                        tagClass: "important",
-                        content: `
-                            <h4>1. 标点符号</h4>
-                            <p><strong>基本用法：</strong></p>
-                            <ul>
-                                <li><strong>句号（。）：</strong>陈述句末尾</li>
-                                <li><strong>问号（？）：</strong>疑问句末尾</li>
-                                <li><strong>感叹号（！）：</strong>感叹句末尾</li>
-                                <li><strong>逗号（，）：</strong>句子中间的停顿</li>
-                            </ul>
-                            <div class="advanced">
-                                <h4>⭐ 拔高内容</h4>
-                                <p><strong>复合句标点：</strong></p>
-                                <ul>
-                                    <li>并列关系：用顿号或逗号</li>
-                                    <li>转折关系：注意分句之间的停顿</li>
-                                    <li>因果关系：分清前后关系</li>
-                                </ul>
-                                <div class="example">
-                                    <strong>例题：</strong>给句子加标点<br>
-                                    1. 春天来了 花儿开了 小草绿了<br>
-                                    2. 你今天去公园吗<br>
-                                    3. 多么美丽的花朵啊<br>
-                                    <button class="show-answer" onclick="toggleAnswer(this)">查看答案</button>
-                                    <div class="answer">
-                                        1. 春天来了，花儿开了，小草绿了。<br>
-                                        2. 你今天去公园吗？<br>
-                                        3. 多么美丽的花朵啊！
-                                    </div>
-                                </div>
-                            </div>
-                        `
+                        tagClass: "basic",
+                        content: `<h4>多音字</h4>
+                        <ul>
+                            <li><strong>乐：</strong>lè（快乐）、yuè（音乐）</li>
+                            <li><strong>长：</strong>cháng（长短）、zhǎng（成长）</li>
+                        </ul>`
                     }
                 ],
                 math: [
                     {
-                        title: "一、万以内数的认识",
+                        title: "万以内数的认识",
                         tag: "基础",
-                        tagClass: "important",
-                        content: `
-                            <h4>1. 数位</h4>
-                            <p><strong>数位顺序：</strong>个位、十位、百位、千位、万位</p>
-                            <p><strong>计数单位：</strong>一、十、百、千、万</p>
-                            <div class="example">
-                                <strong>例：</strong>3254<br>
-                                - 千位是3，表示3个千<br>
-                                - 百位是2，表示2个百<br>
-                                - 十位是5，表示5个十<br>
-                                - 个位是4，表示4个一<br>
-                                - 读作：三千二百五十四
-                            </div>
-                            <div class="advanced">
-                                <h4>⭐ 拔高内容</h4>
-                                <p><strong>数的组成与分解：</strong></p>
-                                <div class="formula">
-                                    3254 = 3000 + 200 + 50 + 4<br>
-                                    3254 = 3个千 + 2个百 + 5个十 + 4个一
-                                </div>
-                                <p><strong>大小比较：</strong></p>
-                                <ul>
-                                    <li>位数不同：位数多的数大</li>
-                                    <li>位数相同：从最高位开始比较</li>
-                                </ul>
-                                <div class="example">
-                                    <strong>例题：</strong>比较大小<br>
-                                    1. 3856 ○ 3865<br>
-                                    2. 4000 ○ 3999<br>
-                                    3. 2050 ○ 2005<br>
-                                    <button class="show-answer" onclick="toggleAnswer(this)">查看答案</button>
-                                    <div class="answer">
-                                        1. <（千位相同，百位相同，十位5<6）<br>
-                                        2. >（4位数>3位数）<br>
-                                        3. >（千位相同，百位相同，十位5>0）
-                                    </div>
-                                </div>
-                            </div>
-                        `
-                    },
-                    {
-                        title: "二、有余数的除法",
-                        tag: "重点",
-                        tagClass: "important",
-                        content: `
-                            <h4>1. 基本概念</h4>
-                            <div class="formula">
-                                被除数 ÷ 除数 = 商 …… 余数<br>
-                                余数 < 除数
-                            </div>
-                            <div class="example">
-                                <strong>例：</strong>17 ÷ 5 = 3 …… 2<br>
-                                - 17是被除数<br>
-                                - 5是除数<br>
-                                - 3是商<br>
-                                - 2是余数<br>
-                                - 2 < 5（余数小于除数）
-                            </div>
-                            <div class="advanced">
-                                <h4>⭐ 拔高内容</h4>
-                                <p><strong>应用题：</strong></p>
-                                <div class="example">
-                                    <strong>例题：</strong>有23个苹果，平均分给4个小朋友，每个小朋友分几个？还剩几个？<br>
-                                    <button class="show-answer" onclick="toggleAnswer(this)">查看答案</button>
-                                    <div class="answer">
-                                        23 ÷ 4 = 5（个）…… 3（个）<br><br>
-                                        答：每个小朋友分5个，还剩3个。<br><br>
-                                        <strong>解题步骤：</strong><br>
-                                        1. 找出总数：23个苹果<br>
-                                        2. 找出份数：4个小朋友<br>
-                                        3. 列式计算：23 ÷ 4<br>
-                                        4. 写出答案：注意单位
-                                    </div>
-                                </div>
-                                <p><strong>找规律：</strong></p>
-                                <div class="example">
-                                    <strong>例题：</strong>按照△○□△○□……的规律排列，第23个图形是什么？<br>
-                                    <button class="show-answer" onclick="toggleAnswer(this)">查看答案</button>
-                                    <div class="answer">
-                                        23 ÷ 3 = 7（组）…… 2（个）<br><br>
-                                        分析：<br>
-                                        - 一组有3个图形：△○□<br>
-                                        - 23个图形可以分成7组，还余2个<br>
-                                        - 余数是2，说明第23个图形是第8组的第2个，即○<br><br>
-                                        答：第23个图形是○。
-                                    </div>
-                                </div>
-                            </div>
-                        `
+                        tagClass: "basic",
+                        content: `<h4>数位顺序</h4>
+                        <p>个位、十位、百位、千位、万位</p>`
                     }
                 ],
                 english: [
                     {
-                        title: "一、基础词汇",
+                        title: "基础词汇",
                         tag: "基础",
                         tagClass: "basic",
-                        content: `
-                            <h4>1. 数字（1-100）</h4>
-                            <p><strong>1-10：</strong>one, two, three, four, five, six, seven, eight, nine, ten</p>
-                            <p><strong>11-20：</strong>eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty</p>
-                            <p><strong>整十数：</strong>twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred</p>
-                            <div class="advanced">
-                                <h4>⭐ 拔高内容</h4>
-                                <p><strong>21-99的表达：</strong></p>
-                                <div class="formula">
-                                    几十-几<br>
-                                    例：21 = twenty-one<br>
-                                    35 = thirty-five<br>
-                                    99 = ninety-nine
-                                </div>
-                                <p><strong>特殊变化：</strong></p>
-                                <ul>
-                                    <li>13-19：都加-teen（但注意13, 15, 18的变化）</li>
-                                    <li>20, 30, 40...90：都加-ty（但注意20, 30, 40, 50, 80的变化）</li>
-                                </ul>
-                            </div>
-                        `
-                    },
-                    {
-                        title: "二、句型",
-                        tag: "重点",
-                        tagClass: "important",
-                        content: `
-                            <h4>1. What's this/that? 句型</h4>
-                            <p><strong>问答：</strong></p>
-                            <div class="formula">
-                                - What's this?（这是什么？）<br>
-                                  It's a/an ...<br>
-                                - What's that?（那是什么？）<br>
-                                  It's a/an ...
-                            </div>
-                            <p><strong>a/an的用法：</strong></p>
-                            <ul>
-                                <li>a用于辅音音素开头的词前：a book, a pen</li>
-                                <li>an用于元音音素开头的词前：an apple, an orange</li>
-                            </ul>
-                            <div class="advanced">
-                                <h4>⭐ 拔高内容</h4>
-                                <p><strong>this vs that：</strong></p>
-                                <ul>
-                                    <li>this：近指，"这个"，距离说话人较近</li>
-                                    <li>that：远指，"那个"，距离说话人较远</li>
-                                </ul>
-                                <div class="example">
-                                    <strong>例题：</strong>用a/an填空<br>
-                                    1. ____ apple<br>
-                                    2. ____ banana<br>
-                                    3. ____ orange<br>
-                                    4. ____ pen<br>
-                                    <button class="show-answer" onclick="toggleAnswer(this)">查看答案</button>
-                                    <div class="answer">
-                                        1. an（元音音素开头）<br>
-                                        2. a（辅音音素开头）<br>
-                                        3. an（元音音素开头）<br>
-                                        4. a（辅音音素开头）
-                                    </div>
-                                </div>
-                            </div>
-                        `
+                        content: `<h4>数字1-100</h4>
+                        <p>one, two, three, four, five...</p>`
                     }
-                ]
+                ],
+                history: [],
+                geography: []
             },
             grade7a: {
                 chinese: [
                     {
-                        title: "一、古诗文",
-                        tag: "必考",
-                        tagClass: "important",
-                        content: `
-                            <h4>1. 《世说新语》二则</h4>
-                            <p><strong>《咏雪》</strong></p>
-                            <p style="font-style: italic; padding: 10px; background: #f9f9f9; border-radius: 5px;">
-                            谢太傅寒雪日内集，与儿女讲论文义。俄而雪骤，公欣然曰："白雪纷纷何所似？"兄子胡儿曰："撒盐空中差可拟。"兄女曰："未若柳絮因风起。"公大笑乐。即公大兄无奕女，左将军王凝之妻也。
-                            </p>
-                            <p><strong>重点字词：</strong></p>
-                            <ul>
-                                <li>内集：把家里人聚集在一起</li>
-                                <li>儿女：子侄辈（古今异义）</li>
-                                <li>俄而：不久，一会儿</li>
-                                <li>差：大体</li>
-                                <li>未若：不如，比不上</li>
-                            </ul>
-                            <div class="advanced">
-                                <h4>⭐ 拔高内容</h4>
-                                <p><strong>比喻的艺术：</strong></p>
-                                <ul>
-                                    <li><strong>"撒盐空中"：</strong>形似，但缺乏美感，比喻生硬</li>
-                                    <li><strong>"柳絮因风起"：</strong>神似，轻盈、飘逸，富有诗意</li>
-                                    <li><strong>高下之分：</strong>柳絮的比喻更胜一筹，因为它抓住了雪花的动态美</li>
-                                </ul>
-                                <p><strong>文化背景：</strong></p>
-                                <p>谢道韫（兄女）是东晋著名才女，这个典故体现了魏晋时期的家庭教育和对文学才能的重视。</p>
-                            </div>
-                        `
-                    },
-                    {
-                        title: "二、记叙文阅读",
+                        title: "古诗文学习",
                         tag: "重点",
                         tagClass: "important",
-                        content: `
-                            <h4>1. 记叙文的六要素</h4>
-                            <ul>
-                                <li>时间、地点、人物</li>
-                                <li>起因、经过、结果</li>
-                            </ul>
-                            <h4>2. 记叙顺序</h4>
-                            <ul>
-                                <li><strong>顺叙：</strong>按时间先后顺序叙述</li>
-                                <li><strong>倒叙：</strong>先写结果，再写起因和经过</li>
-                                <li><strong>插叙：</strong>在叙述过程中插入一段回忆</li>
-                            </ul>
-                            <div class="advanced">
-                                <h4>⭐ 拔高内容</h4>
-                                <p><strong>倒叙的作用：</strong></p>
-                                <ul>
-                                    <li>设置悬念，吸引读者</li>
-                                    <li>突出中心，强调结果</li>
-                                    <li>避免平铺直叙，使文章波澜起伏</li>
-                                </ul>
-                                <p><strong>插叙的作用：</strong></p>
-                                <ul>
-                                    <li>补充情节，使故事更完整</li>
-                                    <li>丰富人物形象</li>
-                                    <li>为下文做铺垫</li>
-                                </ul>
-                                <div class="example">
-                                    <strong>例题：</strong>《从百草园到三味书屋》中，作者为什么要写美女蛇的故事？<br>
-                                    <button class="show-answer" onclick="toggleAnswer(this)">查看答案</button>
-                                    <div class="answer">
-                                        这是插叙。作用：<br>
-                                        1. 增添百草园的神秘色彩和趣味性<br>
-                                        2. 表现儿童的好奇心和想象力<br>
-                                        3. 丰富文章内容，避免单调
-                                    </div>
-                                </div>
-                            </div>
-                        `
+                        content: `<h4>《世说新语》二则</h4>
+                        <p>《咏雪》《陈太丘与友期行》</p>`
                     }
                 ],
                 math: [
                     {
-                        title: "一、有理数",
+                        title: "有理数",
                         tag: "基础",
-                        tagClass: "important",
-                        content: `
-                            <h4>1. 有理数的分类</h4>
-                            <div class="formula">
-                                有理数 = 整数 + 分数<br>
-                                整数：正整数、0、负整数<br>
-                                分数：正分数、负分数
-                            </div>
-                            <div class="advanced">
-                                <h4>⭐ 拔高内容</h4>
-                                <p><strong>绝对值方程：</strong></p>
-                                <div class="formula">
-                                    |x| = a (a>0)<br>
-                                    则 x = a 或 x = -a
-                                </div>
-                                <div class="example">
-                                    <strong>例题：</strong>解方程 |x-2| = 5<br>
-                                    <button class="show-answer" onclick="toggleAnswer(this)">查看答案</button>
-                                    <div class="answer">
-                                        解：|x-2| = 5<br>
-                                        则 x-2 = 5 或 x-2 = -5<br>
-                                        x = 7 或 x = -3
-                                    </div>
-                                </div>
-                                <p><strong>绝对值不等式：</strong></p>
-                                <div class="formula">
-                                    |x| < a (a>0) ⟺ -a < x < a<br>
-                                    |x| > a (a>0) ⟺ x < -a 或 x > a
-                                </div>
-                                <div class="example">
-                                    <strong>例题：</strong>解不等式 |x+1| < 3<br>
-                                    <button class="show-answer" onclick="toggleAnswer(this)">查看答案</button>
-                                    <div class="answer">
-                                        解：|x+1| < 3<br>
-                                        -3 < x+1 < 3<br>
-                                        -4 < x < 2
-                                    </div>
-                                </div>
-                            </div>
-                        `
-                    },
-                    {
-                        title: "二、整式的加减",
-                        tag: "重点",
-                        tagClass: "important",
-                        content: `
-                            <h4>1. 整式的概念</h4>
-                            <ul>
-                                <li><strong>单项式：</strong>数与字母的乘积</li>
-                                <li><strong>多项式：</strong>几个单项式的和</li>
-                                <li><strong>整式：</strong>单项式和多项式统称整式</li>
-                            </ul>
-                            <div class="advanced">
-                                <h4>⭐ 拔高内容</h4>
-                                <p><strong>整式的化简求值：</strong></p>
-                                <div class="example">
-                                    <strong>例题：</strong>已知 a²+ab=3, ab+b²=5，求 a²+2ab+b² 的值<br>
-                                    <button class="show-answer" onclick="toggleAnswer(this)">查看答案</button>
-                                    <div class="answer">
-                                        解：a²+2ab+b²<br>
-                                        = a²+ab+ab+b²<br>
-                                        = (a²+ab)+(ab+b²)<br>
-                                        = 3+5<br>
-                                        = 8
-                                    </div>
-                                </div>
-                            </div>
-                        `
+                        tagClass: "basic",
+                        content: `<h4>有理数的分类</h4>
+                        <p>整数、分数</p>`
                     }
                 ],
                 english: [
                     {
-                        title: "一、时态",
+                        title: "一般现在时",
                         tag: "必考",
                         tagClass: "important",
-                        content: `
-                            <h4>1. 一般现在时</h4>
-                            <p><strong>用法：</strong></p>
-                            <ul>
-                                <li>表示经常性、习惯性的动作</li>
-                                <li>表示客观事实、真理</li>
-                            </ul>
-                            <div class="advanced">
-                                <h4>⭐ 拔高内容</h4>
-                                <p><strong>时间状语从句中的时态：</strong></p>
-                                <div class="formula">
-                                    主句用一般将来时，从句用一般现在时表将来<br>
-                                    I will call you when I arrive.
-                                </div>
-                                <div class="example">
-                                    <strong>例题：</strong>用所给词的适当形式填空<br>
-                                    I will tell him the news as soon as he _____ (come) back.<br>
-                                    <button class="show-answer" onclick="toggleAnswer(this)">查看答案</button>
-                                    <div class="answer">
-                                        comes<br>
-                                        解析：as soon as引导时间状语从句，主句用一般将来时，从句用一般现在时表将来。
-                                    </div>
-                                </div>
-                            </div>
-                        `
+                        content: `<h4>时态用法</h4>
+                        <p>表示经常性的动作或客观事实</p>`
                     }
-                ]
+                ],
+                history: [],
+                geography: []
             },
-            grade7b: {
-                chinese: [
-                    {
-                        title: "一、古诗文",
-                        tag: "必考",
-                        tagClass: "important",
-                        content: `
-                            <h4>1. 《陋室铭》- 刘禹锡</h4>
-                            <p style="font-style: italic; padding: 10px; background: #f9f9f9; border-radius: 5px;">
-                            山不在高，有仙则名。水不在深，有龙则灵。斯是陋室，惟吾德馨。苔痕上阶绿，草色入帘青。谈笑有鸿儒，往来无白丁。可以调素琴，阅金经。无丝竹之乱耳，无案牍之劳形。南阳诸葛庐，西蜀子云亭。孔子云：何陋之有？
-                            </p>
-                            <p><strong>重点字词：</strong></p>
-                            <ul>
-                                <li>名：出名，有名</li>
-                                <li>灵：灵验</li>
-                                <li>斯：这</li>
-                                <li>馨：香气，这里指品德高尚</li>
-                                <li>鸿儒：大儒，博学的人</li>
-                                <li>白丁：平民，这里指没有学问的人</li>
-                                <li>案牍：官府公文</li>
-                            </ul>
-                            <div class="advanced">
-                                <h4>⭐ 拔高内容</h4>
-                                <p><strong>托物言志：</strong></p>
-                                <p>作者通过描写陋室，表达自己不慕荣利、安贫乐道的生活态度和高尚情操。</p>
-                                <p><strong>写作手法：</strong></p>
-                                <ul>
-                                    <li><strong>对比：</strong>"有仙则名"vs"山不在高"</li>
-                                    <li><strong>对偶：</strong>"苔痕上阶绿，草色入帘青"</li>
-                                    <li><strong>引用：</strong>"孔子云：何陋之有？"</li>
-                                </ul>
-                                <div class="example">
-                                    <strong>例题：</strong>"无丝竹之乱耳，无案牍之劳形"表达了作者怎样的生活态度？<br>
-                                    <button class="show-answer" onclick="toggleAnswer(this)">查看答案</button>
-                                    <div class="answer">
-                                        这两句写出了陋室环境的清幽，没有世俗音乐的干扰，没有官府公文的劳累。<br><br>
-                                        表达了作者：<br>
-                                        1. 不慕荣利，不愿与世俗同流合污<br>
-                                        2. 安贫乐道，追求精神上的富足<br>
-                                        3. 向往清静、高雅的生活
-                                    </div>
-                                </div>
-                            </div>
-                        `
-                    },
-                    {
-                        title: "二、说明文阅读",
-                        tag: "重点",
-                        tagClass: "important",
-                        content: `
-                            <h4>1. 说明方法</h4>
-                            <ul>
-                                <li><strong>举例子：</strong>通过具体例子说明事物特点</li>
-                                <li><strong>列数字：</strong>用具体数字说明事物特征</li>
-                                <li><strong>作比较：</strong>通过与相关事物比较说明</li>
-                                <li><strong>打比方：</strong>用比喻说明事物特征</li>
-                                <li><strong>分类别：</strong>按一定标准分类说明</li>
-                            </ul>
-                            <div class="advanced">
-                                <h4>⭐ 拔高内容</h4>
-                                <p><strong>说明方法的判定：</strong></p>
-                                <div class="example">
-                                    <strong>例题：</strong>判断下列句子使用的说明方法<br>
-                                    1. 石拱桥的桥洞成弧形，就像虹。（）<br>
-                                    2. 永定河上的卢沟桥，修建于公元1189到1192年间。（）<br>
-                                    3. 这种桥形式优美，结构坚固。（）<br>
-                                    <button class="show-answer" onclick="toggleAnswer(this)">查看答案</button>
-                                    <div class="answer">
-                                        1. 打比方（"就像虹"是比喻）<br>
-                                        2. 列数字（"1189到1192年间"是具体数字）<br>
-                                        3. 没有使用说明方法（只是简单的描述，没有举例子、列数字等）
-                                    </div>
-                                </div>
-                                <p><strong>说明方法的作用：</strong></p>
-                                <div class="formula">
-                                    说明方法+具体内容+说明效果<br>
-                                    例：运用了举例子的说明方法，通过......的例子，具体说明了......，使说明更具体、更有说服力。
-                                </div>
-                            </div>
-                        `
-                    }
-                ],
-                math: [
-                    {
-                        title: "一、二元一次方程组",
-                        tag: "必考",
-                        tagClass: "important",
-                        content: `
-                            <h4>1. 基本概念</h4>
-                            <div class="formula">
-                                二元一次方程：含有两个未知数，未知数的次数都是1<br>
-                                二元一次方程组：由两个二元一次方程组成<br>
-                                标准形式：ax+by=c, dx+ey=f
-                            </div>
-                            <div class="advanced">
-                                <h4>⭐ 拔高内容</h4>
-                                <p><strong>代入消元法：</strong></p>
-                                <div class="formula">
-                                    步骤：<br>
-                                    1. 从一个方程中用一个未知数表示另一个未知数<br>
-                                    2. 代入另一个方程，消去一个未知数<br>
-                                    3. 解一元一次方程<br>
-                                    4. 回代求另一个未知数
-                                </div>
-                                <div class="example">
-                                    <strong>例题：</strong>解方程组<br>
-                                    x + y = 5 ①<br>
-                                    x - y = 1 ②<br>
-                                    <button class="show-answer" onclick="toggleAnswer(this)">查看答案</button>
-                                    <div class="answer">
-                                        解法一（代入法）：<br>
-                                        由①得：y = 5-x ③<br>
-                                        将③代入②：x-(5-x) = 1<br>
-                                        x-5+x = 1<br>
-                                        2x = 6<br>
-                                        x = 3<br>
-                                        将x=3代入③：y = 5-3 = 2<br><br>
-                                        解法二（加减法）：<br>
-                                        ①+②：2x = 6，x = 3<br>
-                                        ①-②：2y = 4，y = 2<br><br>
-                                        答：x=3, y=2
-                                    </div>
-                                </div>
-                                <p><strong>应用题：</strong></p>
-                                <div class="example">
-                                    <strong>例题：</strong>鸡兔同笼，共有35个头，94只脚，求鸡兔各有多少？<br>
-                                    <button class="show-answer" onclick="toggleAnswer(this)">查看答案</button>
-                                    <div class="answer">
-                                        解：设鸡有x只，兔有y只<br>
-                                        根据题意列方程组：<br>
-                                        x + y = 35 ①（头的总数）<br>
-                                        2x + 4y = 94 ②（脚的总数）<br><br>
-                                        由①得：x = 35-y ③<br>
-                                        将③代入②：2(35-y)+4y = 94<br>
-                                        70-2y+4y = 94<br>
-                                        2y = 24<br>
-                                        y = 12<br>
-                                        将y=12代入③：x = 35-12 = 23<br><br>
-                                        答：鸡有23只，兔有12只。
-                                    </div>
-                                </div>
-                            </div>
-                        `
-                    },
-                    {
-                        title: "二、不等式与不等式组",
-                        tag: "重点",
-                        tagClass: "important",
-                        content: `
-                            <h4>1. 不等式的性质</h4>
-                            <div class="formula">
-                                性质1：不等式两边加（或减）同一个数，不等号方向不变<br>
-                                性质2：不等式两边乘（或除以）同一个正数，不等号方向不变<br>
-                                性质3：不等式两边乘（或除以）同一个负数，不等号方向改变
-                            </div>
-                            <div class="advanced">
-                                <h4>⭐ 拔高内容</h4>
-                                <p><strong>一元一次不等式组：</strong></p>
-                                <div class="formula">
-                                    解集的确定：<br>
-                                    ① 同大取大：x>a, x>b ⟹ x>max(a,b)<br>
-                                    ② 同小取小：x<a, x<b ⟹ x<min(a,b)<br>
-                                    ③ 大小小大取中间：a<x<b<br>
-                                    ④ 大大小小无解：x>a, x<a ⟹ 无解
-                                </div>
-                                <div class="example">
-                                    <strong>例题：</strong>解不等式组<br>
-                                    2x-1 > x+1 ①<br>
-                                    x+8 < 4x-1 ②<br>
-                                    <button class="show-answer" onclick="toggleAnswer(this)">查看答案</button>
-                                    <div class="answer">
-                                        解：由①得：2x-x > 1+1<br>
-                                        x > 2 ③<br><br>
-                                        由②得：8+1 < 4x-x<br>
-                                        9 < 3x<br>
-                                        3 < x，即 x > 3 ④<br><br>
-                                        由③④得：x > 3（同大取大）
-                                    </div>
-                                </div>
-                            </div>
-                        `
-                    }
-                ],
-                english: [
-                    {
-                        title: "一、情态动词",
-                        tag: "必考",
-                        tagClass: "important",
-                        content: `
-                            <h4>1. 常见情态动词</h4>
-                            <ul>
-                                <li><strong>can/could：</strong>能力、许可</li>
-                                <li><strong>may：</strong>许可、可能性</li>
-                                <li><strong>must：</strong>必须、肯定推测</li>
-                                <li><strong>should：</strong>应该、建议</li>
-                                <li><strong>will/would：</strong>意愿、请求</li>
-                            </ul>
-                            <div class="advanced">
-                                <h4>⭐ 拔高内容</h4>
-                                <p><strong>情态动词表推测：</strong></p>
-                                <div class="formula">
-                                    肯定推测：must（一定）> could/may（可能）> might（也许）<br>
-                                    否定推测：can't（不可能）、may not（可能不）<br><br>
-                                    注意：must只用于肯定推测，否定推测用can't
-                                </div>
-                                <div class="example">
-                                    <strong>例题：</strong>用情态动词填空<br>
-                                    1. The light is on. He _____ be at home.（肯定推测）<br>
-                                    2. The ground is wet. It _____ have rained last night.（可能）<br>
-                                    3. This _____ be Tom's bag. His name is on it.（肯定）<br>
-                                    <button class="show-answer" onclick="toggleAnswer(this)">查看答案</button>
-                                    <div class="answer">
-                                        1. must（灯亮着，他一定在家）<br>
-                                        2. could/may/might（地面湿了，可能昨晚下雨了）<br>
-                                        3. must（有他的名字，一定是他的包）
-                                    </div>
-                                </div>
-                            </div>
-                        `
-                    },
-                    {
-                        title: "二、状语从句",
-                        tag: "重点",
-                        tagClass: "important",
-                        content: `
-                            <h4>1. 时间状语从句</h4>
-                            <p><strong>引导词：</strong>when（当...时）、while（当...时）、before（在...之前）、after（在...之后）、until（直到）、as soon as（一...就...）</p>
-                            <div class="advanced">
-                                <h4>⭐ 拔高内容</h4>
-                                <p><strong>when vs while：</strong></p>
-                                <div class="formula">
-                                    when：短暂性动词或延续性动词<br>
-                                    while：只能用于延续性动词<br><br>
-                                    延续性动词：study, read, work, sleep等<br>
-                                    短暂性动词：arrive, leave, begin等
-                                </div>
-                                <div class="example">
-                                    <strong>例题：</strong>用when或while填空<br>
-                                    1. I was reading _____ he came in.<br>
-                                    2. _____ I was sleeping, the phone rang.<br>
-                                    3. He fell asleep _____ he was watching TV.<br>
-                                    <button class="show-answer" onclick="toggleAnswer(this)">查看答案</button>
-                                    <div class="answer">
-                                        1. when（came是短暂性动词）<br>
-                                        2. When/While（sleeping是延续性动词）<br>
-                                        3. while（watching是延续性动词）
-                                    </div>
-                                </div>
-                                <p><strong>条件状语从句：</strong></p>
-                                <div class="formula">
-                                    引导词：if（如果）、unless（除非）<br><br>
-                                    主将从现：主句用一般将来时，从句用一般现在时<br>
-                                    I will go to the park if it is fine tomorrow.
-                                </div>
-                            </div>
-                        `
-                    }
-                ]
+            grade8a: {
+                chinese: [],
+                math: [],
+                english: [],
+                history: [],
+                geography: []
+            },
+            grade8b: {
+                chinese: [],
+                math: [],
+                english: [],
+                history: [],
+                geography: []
             }
         };
 
@@ -1236,6 +792,7 @@
 
             // Generate slides
             generateSlides();
+            updateStats();
         }
 
         function selectSubject(subject) {
@@ -1244,10 +801,11 @@
 
             // Update subject tabs
             document.querySelectorAll('.subject-tab').forEach(tab => tab.classList.remove('active'));
-            event.target.classList.add('active');
+            event.target.closest('.subject-tab').classList.add('active');
 
             // Generate slides
             generateSlides();
+            updateStats();
         }
 
         function updateSubjectTabs() {
@@ -1256,21 +814,40 @@
             tabs[0].classList.add('active');
         }
 
+        function updateStats() {
+            const data = knowledgeData[currentGrade];
+            let total = 0;
+            let current = 0;
+            
+            ['chinese', 'math', 'english', 'history', 'geography'].forEach(subject => {
+                const count = data[subject] ? data[subject].length : 0;
+                total += count;
+                if (subject === currentSubject) current = count;
+                
+                const countEl = document.getElementById(`count-${subject}`);
+                if (countEl) countEl.textContent = count;
+            });
+            
+            document.getElementById('totalStats').textContent = `总知识点：${total}个`;
+            document.getElementById('currentStats').textContent = `当前科目：${current}个`;
+        }
+
         function generateSlides() {
             const wrapper = document.getElementById('slidesWrapper');
-            const data = knowledgeData[currentGrade][currentSubject];
+            const data = knowledgeData[currentGrade];
+            const subjectData = data ? data[currentSubject] : null;
 
-            if (!data || data.length === 0) {
-                wrapper.innerHTML = '<div class="slide active"><div class="slide-card"><h3>暂无内容</h3></div></div>';
+            if (!subjectData || subjectData.length === 0) {
+                wrapper.innerHTML = '<div class="slide active"><div class="slide-card"><h3>暂无内容</h3><p>该年级科目的知识点正在补充中...</p></div></div>';
                 slides = [];
                 updateNavigation();
                 return;
             }
 
-            slides = data;
+            slides = subjectData;
             wrapper.innerHTML = '';
 
-            data.forEach((slideData, index) => {
+            subjectData.forEach((slideData, index) => {
                 const slide = document.createElement('div');
                 slide.className = 'slide' + (index === 0 ? ' active' : '');
                 slide.innerHTML = `
@@ -1289,6 +866,15 @@
             const newSlide = currentSlide + direction;
             if (newSlide >= 0 && newSlide < slides.length) {
                 currentSlide = newSlide;
+                updateSlidePosition();
+            }
+        }
+
+        function jumpToSlide() {
+            const input = document.getElementById('jumpInput');
+            const pageNum = parseInt(input.value) - 1;
+            if (pageNum >= 0 && pageNum < slides.length) {
+                currentSlide = pageNum;
                 updateSlidePosition();
             }
         }
@@ -1320,6 +906,11 @@
             const counter = document.getElementById('slideCounter');
             counter.textContent = slides.length > 0 ? `${currentSlide + 1} / ${slides.length}` : '0 / 0';
 
+            // Update jump input
+            const jumpInput = document.getElementById('jumpInput');
+            jumpInput.max = slides.length;
+            jumpInput.placeholder = currentSlide + 1;
+
             // Update buttons
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
@@ -1327,16 +918,27 @@
             prevBtn.disabled = currentSlide <= 0;
             nextBtn.disabled = currentSlide >= slides.length - 1;
 
-            // Update progress dots
+            // Update progress dots (最多显示10个)
             const dotsContainer = document.getElementById('progressDots');
             dotsContainer.innerHTML = '';
 
-            slides.forEach((_, index) => {
-                const dot = document.createElement('div');
-                dot.className = 'progress-dot' + (index === currentSlide ? ' active' : '');
-                dot.onclick = () => goToSlide(index);
-                dotsContainer.appendChild(dot);
-            });
+            if (slides.length <= 10) {
+                slides.forEach((_, index) => {
+                    const dot = document.createElement('div');
+                    dot.className = 'progress-dot' + (index === currentSlide ? ' active' : '');
+                    dot.onclick = () => goToSlide(index);
+                    dotsContainer.appendChild(dot);
+                });
+            } else {
+                // 显示当前位置附近的点
+                const start = Math.max(0, Math.min(currentSlide - 4, slides.length - 10));
+                for (let i = start; i < Math.min(start + 10, slides.length); i++) {
+                    const dot = document.createElement('div');
+                    dot.className = 'progress-dot' + (i === currentSlide ? ' active' : '');
+                    dot.onclick = () => goToSlide(i);
+                    dotsContainer.appendChild(dot);
+                }
+            }
         }
 
         function toggleAnswer(button) {
@@ -1375,7 +977,9 @@
             const names = {
                 'grade2': '2年级下学期',
                 'grade7a': '7年级上学期',
-                'grade7b': '7年级下学期'
+                'grade7b': '7年级下学期',
+                'grade8a': '8年级上学期',
+                'grade8b': '8年级下学期'
             };
             return names[grade] || grade;
         }
@@ -1384,7 +988,9 @@
             const names = {
                 'chinese': '语文',
                 'math': '数学',
-                'english': '英语'
+                'english': '英语',
+                'history': '历史',
+                'geography': '地理'
             };
             return names[subject] || subject;
         }
@@ -1393,6 +999,8 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowLeft') navigateSlide(-1);
             if (e.key === 'ArrowRight') navigateSlide(1);
+            if (e.key === 'Home') goToSlide(0);
+            if (e.key === 'End') goToSlide(slides.length - 1);
         });
 
         // Touch/swipe support
@@ -1423,7 +1031,29 @@
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
+            // 调试：检查数据是否正确加载
+            console.log('=== 知识点数据加载检查 ===');
+            console.log('语文知识点:', grade7bChineseKnowledge ? '已加载' : '未加载');
+            console.log('数学知识点:', grade7bMathKnowledge ? '已加载' : '未加载');
+            console.log('英语知识点:', grade7bEnglishKnowledge ? '已加载' : '未加载');
+            console.log('历史知识点:', grade7bHistoryKnowledge ? '已加载' : '未加载');
+            console.log('地理知识点:', grade7bGeographyKnowledge ? '已加载' : '未加载');
+            
+            const chineseCount = knowledgeData.grade7b.chinese.length;
+            const mathCount = knowledgeData.grade7b.math.length;
+            const englishCount = knowledgeData.grade7b.english.length;
+            const historyCount = knowledgeData.grade7b.history.length;
+            const geographyCount = knowledgeData.grade7b.geography.length;
+            
+            console.log('语文:', chineseCount, '个');
+            console.log('数学:', mathCount, '个');
+            console.log('英语:', englishCount, '个');
+            console.log('历史:', historyCount, '个');
+            console.log('地理:', geographyCount, '个');
+            console.log('总计:', chineseCount + mathCount + englishCount + historyCount + geographyCount, '个');
+            
             generateSlides();
+            updateStats();
         });
     </script>
 </body>
