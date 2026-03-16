@@ -10,65 +10,59 @@
         body {
             font-family: 'Microsoft YaHei', sans-serif;
             background: #f5f5f5;
-            min-height: 100vh;
+            overflow: hidden;
         }
 
         .container {
             width: 100%;
+            height: 100vh;
             background: white;
-            min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
 
-        /* 顶部工具栏 - 紧凑 */
+        /* 顶部工具栏 - 超紧凑 */
         .toolbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 8px 15px;
+            padding: 6px 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
             z-index: 1000;
-            height: 40px;
+            height: 36px;
+            flex-shrink: 0;
         }
 
         .toolbar-left {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .toolbar h1 {
-            font-size: 0.95em;
+            font-size: 0.9em;
             font-weight: 600;
         }
 
         .stats-text {
-            font-size: 0.8em;
+            font-size: 0.75em;
             opacity: 0.9;
-            padding: 3px 10px;
+            padding: 2px 8px;
             background: rgba(255,255,255,0.2);
-            border-radius: 12px;
+            border-radius: 10px;
         }
 
         .settings-btn {
             background: rgba(255,255,255,0.2);
             color: white;
             border: none;
-            padding: 5px 12px;
-            border-radius: 15px;
+            padding: 4px 10px;
+            border-radius: 12px;
             cursor: pointer;
-            font-size: 0.85em;
+            font-size: 0.8em;
             transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 4px;
         }
 
         .settings-btn:hover {
@@ -78,15 +72,15 @@
         /* 设置面板 */
         .settings-panel {
             position: fixed;
-            top: 42px;
+            top: 38px;
             right: 15px;
             background: white;
-            border-radius: 12px;
-            padding: 15px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.25);
+            border-radius: 10px;
+            padding: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.25);
             z-index: 1000;
             display: none;
-            min-width: 220px;
+            min-width: 200px;
         }
 
         .settings-panel.show {
@@ -95,12 +89,12 @@
         }
 
         @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-8px); }
+            from { opacity: 0; transform: translateY(-6px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .settings-group {
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .settings-group:last-child {
@@ -110,45 +104,45 @@
         .settings-label {
             color: #2c3e50;
             font-weight: 600;
-            margin-bottom: 6px;
+            margin-bottom: 5px;
             display: block;
-            font-size: 0.85em;
+            font-size: 0.8em;
         }
 
         .settings-select {
             width: 100%;
-            padding: 8px;
+            padding: 6px;
             border: 2px solid #3498db;
-            border-radius: 8px;
-            font-size: 0.9em;
+            border-radius: 6px;
+            font-size: 0.85em;
             cursor: pointer;
             background: white;
         }
 
-        /* 主内容区 */
+        /* 主内容区 - 固定高度，内部滚动 */
         .main-content {
-            margin-top: 40px;
-            padding: 20px 25px;
-            padding-bottom: 60px;
-            touch-action: pan-y;
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 15px 25px;
         }
 
-        /* 知识点卡片 */
+        /* 知识点卡片 - 紧凑 */
         .slide-card {
-            max-width: 1100px;
+            max-width: 1000px;
             margin: 0 auto;
             background: white;
-            border-radius: 12px;
-            padding: 25px 35px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            border-radius: 10px;
+            padding: 18px 28px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
             border: 1px solid #e0e0e0;
         }
 
         .slide-card h3 {
             color: #2c3e50;
-            font-size: 1.4em;
-            margin-bottom: 18px;
-            padding-bottom: 12px;
+            font-size: 1.25em;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
             border-bottom: 2px solid #3498db;
             display: flex;
             align-items: center;
@@ -157,9 +151,9 @@
 
         .tag {
             display: inline-block;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 0.8em;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.75em;
             font-weight: 600;
         }
 
@@ -168,33 +162,33 @@
 
         .slide-card h4 {
             color: #3498db;
-            font-size: 1.1em;
-            margin: 18px 0 12px;
+            font-size: 1em;
+            margin: 12px 0 8px;
         }
 
         .slide-card h5 {
             color: #2c3e50;
-            font-size: 1em;
-            margin: 15px 0 10px;
+            font-size: 0.95em;
+            margin: 10px 0 6px;
         }
 
         .slide-card p {
-            line-height: 1.75;
+            line-height: 1.6;
             color: #2c3e50;
-            margin-bottom: 10px;
-            font-size: 0.95em;
+            margin-bottom: 6px;
+            font-size: 0.9em;
         }
 
         .slide-card ul {
-            margin-left: 25px;
-            margin-bottom: 15px;
+            margin-left: 20px;
+            margin-bottom: 10px;
         }
 
         .slide-card li {
-            line-height: 1.75;
-            margin-bottom: 8px;
+            line-height: 1.6;
+            margin-bottom: 4px;
             color: #2c3e50;
-            font-size: 0.95em;
+            font-size: 0.9em;
         }
 
         .slide-card strong {
@@ -205,43 +199,45 @@
         .formula {
             background: #2c3e50;
             color: white;
-            padding: 15px 20px;
-            border-radius: 10px;
-            margin: 15px 0;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 10px 0;
             font-family: 'Courier New', monospace;
-            line-height: 1.7;
-            font-size: 0.95em;
+            line-height: 1.5;
+            font-size: 0.85em;
         }
 
         .advanced {
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 20px;
-            border-radius: 12px;
-            margin: 18px 0;
-            border-left: 4px solid #3498db;
+            padding: 12px;
+            border-radius: 10px;
+            margin: 12px 0;
+            border-left: 3px solid #3498db;
         }
 
         .advanced h4 {
             color: #3498db;
             margin-top: 0;
+            margin-bottom: 8px;
         }
 
         .example {
             background: #fff9e6;
-            border: 2px solid #f39c12;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 15px 0;
+            border: 1px solid #f39c12;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
         }
 
         .answer {
             display: none;
             background: #ecf0f1;
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 8px;
             border-left: 3px solid #27ae60;
-            line-height: 1.7;
+            line-height: 1.5;
+            font-size: 0.85em;
         }
 
         .answer.show {
@@ -258,12 +254,12 @@
             background: #3498db;
             color: white;
             border: none;
-            padding: 7px 18px;
-            border-radius: 15px;
+            padding: 5px 14px;
+            border-radius: 12px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 0.9em;
-            margin-top: 10px;
+            font-size: 0.8em;
+            margin-top: 8px;
             transition: all 0.3s;
         }
 
@@ -271,37 +267,34 @@
             background: #2980b9;
         }
 
-        /* 底部工具栏 - 紧凑图标 */
+        /* 底部工具栏 - 超紧凑 */
         .nav-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
             background: #2c3e50;
-            padding: 8px 15px;
+            padding: 6px 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 -2px 8px rgba(0,0,0,0.15);
+            box-shadow: 0 -2px 6px rgba(0,0,0,0.15);
             z-index: 1000;
-            height: 40px;
+            height: 36px;
+            flex-shrink: 0;
         }
 
         .nav-left, .nav-center, .nav-right {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         .icon-btn {
             background: rgba(255,255,255,0.15);
             color: white;
             border: none;
-            width: 36px;
-            height: 36px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             cursor: pointer;
-            font-size: 1.1em;
+            font-size: 1em;
             transition: all 0.3s;
             display: flex;
             align-items: center;
@@ -319,32 +312,28 @@
             transform: none;
         }
 
-        .icon-btn.active {
-            background: #3498db;
-        }
-
         .page-info {
             color: white;
-            font-size: 0.85em;
+            font-size: 0.8em;
             font-weight: 600;
-            padding: 0 10px;
+            padding: 0 8px;
         }
 
         .jump-input {
-            width: 50px;
-            padding: 5px 8px;
+            width: 45px;
+            padding: 4px 6px;
             border: 2px solid #3498db;
-            border-radius: 15px;
+            border-radius: 12px;
             text-align: center;
-            font-size: 0.85em;
+            font-size: 0.8em;
             background: white;
         }
 
         /* 响应式 */
         @media (max-width: 768px) {
             .toolbar {
-                padding: 6px 12px;
-                height: 36px;
+                padding: 5px 12px;
+                height: 34px;
             }
 
             .toolbar h1 {
@@ -352,32 +341,30 @@
             }
 
             .stats-text {
-                font-size: 0.75em;
+                font-size: 0.7em;
             }
 
             .main-content {
-                margin-top: 36px;
-                padding: 15px;
-                padding-bottom: 55px;
+                padding: 12px;
             }
 
             .slide-card {
-                padding: 18px;
+                padding: 15px;
             }
 
             .slide-card h3 {
-                font-size: 1.2em;
+                font-size: 1.1em;
             }
 
             .nav-bar {
-                padding: 6px 12px;
-                height: 36px;
+                padding: 5px 10px;
+                height: 34px;
             }
 
             .icon-btn {
-                width: 32px;
-                height: 32px;
-                font-size: 1em;
+                width: 28px;
+                height: 28px;
+                font-size: 0.9em;
             }
         }
 
@@ -388,8 +375,8 @@
             }
 
             .main-content {
-                margin: 0;
-                padding: 20px;
+                overflow: visible;
+                height: auto;
             }
 
             .slide-card {
@@ -407,9 +394,7 @@
                 <h1>📚 知识点</h1>
                 <span class="stats-text" id="statsText">7下 | 语文 | 1/90</span>
             </div>
-            <button class="settings-btn" onclick="toggleSettings()">
-                ⚙️ 设置
-            </button>
+            <button class="settings-btn" onclick="toggleSettings()">⚙️ 设置</button>
         </div>
 
         <!-- 设置面板 -->
@@ -427,11 +412,11 @@
             <div class="settings-group">
                 <label class="settings-label">选择科目</label>
                 <select class="settings-select" id="subjectSelect" onchange="changeSubject()">
-                    <option value="chinese" selected>📖 语文 (90)</option>
-                    <option value="math">🔢 数学 (50)</option>
-                    <option value="english">🇬🇧 英语 (24)</option>
-                    <option value="history">📜 历史 (25)</option>
-                    <option value="geography">🌍 地理 (20)</option>
+                    <option value="chinese" selected>📖 语文</option>
+                    <option value="math">🔢 数学</option>
+                    <option value="english">🇬🇧 英语</option>
+                    <option value="history">📜 历史</option>
+                    <option value="geography">🌍 地理</option>
                 </select>
             </div>
         </div>
@@ -461,7 +446,7 @@
                 <button class="icon-btn" onclick="jumpToEnd()" title="最后一页">⏭</button>
                 <button class="icon-btn" onclick="navigate(10)" title="前进10页">⏩</button>
                 <button class="icon-btn" id="nextBtn" onclick="navigate(1)" title="下一页">▶</button>
-                <span style="color: rgba(255,255,255,0.3); margin: 0 5px;">|</span>
+                <span style="color: rgba(255,255,255,0.3); margin: 0 3px;">|</span>
                 <button class="icon-btn" onclick="exportMarkdown()" title="保存为Markdown">📝</button>
                 <button class="icon-btn" onclick="window.print()" title="打印/保存PDF">🖨</button>
             </div>
@@ -492,13 +477,152 @@
             return [];
         }
 
-        // 合并所有知识点
-        const knowledgeBase = {
-            chinese: ensureArray(grade7bChineseKnowledge),
-            math: grade7bMathKnowledge ? ensureArray(grade7bMathKnowledge.math) : [],
-            english: ensureArray(grade7bEnglishKnowledge),
-            history: ensureArray(grade7bHistoryKnowledge),
-            geography: ensureArray(grade7bGeographyKnowledge)
+        // 清理内容中的图片引用
+        function cleanContent(html) {
+            // 移除"如图"相关的文字
+            return html.replace(/如图[，,。、]/g, '')
+                       .replace(/\(如图\)/g, '')
+                       .replace(/（如图）/g, '')
+                       .replace(/如图所示[，,。、]/g, '');
+        }
+
+        // 各年级知识点数据
+        const gradeData = {
+            grade2: {
+                chinese: [
+                    {
+                        title: "1. 认识常用汉字",
+                        tag: "基础",
+                        tagClass: "basic",
+                        content: `
+                            <h4>多音字</h4>
+                            <ul>
+                                <li><strong>乐：</strong>lè（快乐）、yuè（音乐）</li>
+                                <li><strong>长：</strong>cháng（长短）、zhǎng（成长）</li>
+                                <li><strong>种：</strong>zhǒng（种子）、zhòng（种树）</li>
+                            </ul>
+                            <h4>形近字</h4>
+                            <ul>
+                                <li>已（已经）/ 己（自己）</li>
+                                <li>峰（山峰）/ 锋（锋利）</li>
+                            </ul>
+                        `
+                    },
+                    {
+                        title: "2. 词语积累",
+                        tag: "基础",
+                        tagClass: "basic",
+                        content: `
+                            <h4>AABB式词语</h4>
+                            <ul>
+                                <li>高高兴兴、平平安安、快快乐乐</li>
+                                <li>明明白白、红红火火、干干净净</li>
+                            </ul>
+                            <h4>ABAB式词语</h4>
+                            <ul>
+                                <li>雪白雪白、火红火红、碧绿碧绿</li>
+                            </ul>
+                        `
+                    },
+                    {
+                        title: "3. 句子训练",
+                        tag: "重点",
+                        tagClass: "important",
+                        content: `
+                            <h4>标点符号</h4>
+                            <ul>
+                                <li><strong>句号（。）：</strong>陈述句末尾</li>
+                                <li><strong>问号（？）：</strong>疑问句末尾</li>
+                                <li><strong>感叹号（！）：</strong>感叹句末尾</li>
+                            </ul>
+                            <div class="example">
+                                <strong>例题：</strong>给句子加标点<br>
+                                1. 春天来了__<br>
+                                2. 你去哪里__<br>
+                                <button class="show-answer" onclick="toggleAnswer(this)">查看答案</button>
+                                <div class="answer">
+                                    1. 春天来了。<br>
+                                    2. 你去哪里？
+                                </div>
+                            </div>
+                        `
+                    }
+                ],
+                math: [
+                    {
+                        title: "1. 万以内数的认识",
+                        tag: "基础",
+                        tagClass: "basic",
+                        content: `
+                            <h4>数位顺序</h4>
+                            <ul>
+                                <li>个位、十位、百位、千位、万位</li>
+                            </ul>
+                            <h4>数的组成</h4>
+                            <p>3254 = 3000 + 200 + 50 + 4</p>
+                            <p>= 3个千 + 2个百 + 5个十 + 4个一</p>
+                        `
+                    }
+                ],
+                english: [
+                    {
+                        title: "1. Numbers 1-20",
+                        tag: "基础",
+                        tagClass: "basic",
+                        content: `
+                            <h4>数字1-20</h4>
+                            <p>one, two, three, four, five, six, seven, eight, nine, ten</p>
+                            <p>eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty</p>
+                        `
+                    }
+                ],
+                history: [],
+                geography: []
+            },
+            grade7a: {
+                chinese: [
+                    {
+                        title: "1. 古诗文《世说新语》",
+                        tag: "必考",
+                        tagClass: "important",
+                        content: `
+                            <h4>《咏雪》</h4>
+                            <p>谢太傅寒雪日内集，与儿女讲论文义。俄而雪骤，公欣然曰："白雪纷纷何所似？"兄子胡儿曰："撒盐空中差可拟。"兄女曰："未若柳絮因风起。"公大笑乐。</p>
+                            <h4>重点字词</h4>
+                            <ul>
+                                <li>内集：把家里人聚集在一起</li>
+                                <li>儿女：子侄辈</li>
+                                <li>俄而：不久，一会儿</li>
+                            </ul>
+                        `
+                    }
+                ],
+                math: [],
+                english: [],
+                history: [],
+                geography: []
+            },
+            grade7b: {
+                chinese: ensureArray(grade7bChineseKnowledge),
+                math: grade7bMathKnowledge ? ensureArray(grade7bMathKnowledge.math) : [],
+                english: ensureArray(grade7bEnglishKnowledge),
+                history: ensureArray(grade7bHistoryKnowledge),
+                geography: ensureArray(grade7bGeographyKnowledge)
+            },
+            grade8a: {
+                chinese: [],
+                math: [],
+                english: [],
+                history: [],
+                geography: []
+            },
+            grade8b: {
+                chinese: [],
+                math: [],
+                english: [],
+                history: [],
+                geography: []
+            }
         };
 
         // 状态
@@ -529,6 +653,7 @@
         // 初始化
         function init() {
             updateSlide();
+            updateSubjectOptions();
             
             // 点击页面其他地方关闭设置面板
             document.addEventListener('click', (e) => {
@@ -552,6 +677,33 @@
             }, { passive: true });
         }
 
+        // 更新科目选项
+        function updateSubjectOptions() {
+            const data = gradeData[currentGrade];
+            const select = document.getElementById('subjectSelect');
+            
+            select.innerHTML = '';
+            
+            const subjects = [
+                { key: 'chinese', icon: '📖', name: '语文' },
+                { key: 'math', icon: '🔢', name: '数学' },
+                { key: 'english', icon: '🇬🇧', name: '英语' },
+                { key: 'history', icon: '📜', name: '历史' },
+                { key: 'geography', icon: '🌍', name: '地理' }
+            ];
+            
+            subjects.forEach(s => {
+                const count = data[s.key] ? data[s.key].length : 0;
+                const option = document.createElement('option');
+                option.value = s.key;
+                option.textContent = `${s.icon} ${s.name} (${count})`;
+                if (count === 0) option.disabled = true;
+                select.appendChild(option);
+            });
+            
+            select.value = currentSubject;
+        }
+
         // 处理滑动
         function handleSwipe() {
             const swipeThreshold = 50;
@@ -559,9 +711,9 @@
 
             if (Math.abs(diff) > swipeThreshold) {
                 if (diff > 0) {
-                    navigate(1); // 左滑，下一页
+                    navigate(1);
                 } else {
-                    navigate(-1); // 右滑，上一页
+                    navigate(-1);
                 }
             }
         }
@@ -575,7 +727,12 @@
         // 从设置面板改变年级
         function changeGrade() {
             currentGrade = document.getElementById('gradeSelect').value;
-            // 这里可以加载不同年级的数据
+            currentSubject = 'chinese';
+            currentIndex = 0;
+            updateSubjectOptions();
+            updateSlide();
+            if (settingsVisible) toggleSettings();
+            document.getElementById('mainContent').scrollTop = 0;
         }
 
         // 从设置面板改变科目
@@ -584,18 +741,21 @@
             currentIndex = 0;
             updateSlide();
             if (settingsVisible) toggleSettings();
-            window.scrollTo(0, 0);
+            document.getElementById('mainContent').scrollTop = 0;
         }
 
         // 更新幻灯片
         function updateSlide() {
-            const data = knowledgeBase[currentSubject];
+            const data = gradeData[currentGrade][currentSubject];
             
             if (!data || data.length === 0) {
                 document.getElementById('slideContent').innerHTML = `
                     <h3>暂无内容 <span class="tag basic">提示</span></h3>
-                    <p>该科目知识点正在补充中...</p>
+                    <p>该年级科目的知识点正在补充中...</p>
                 `;
+                document.getElementById('statsText').textContent = 
+                    `${gradeNames[currentGrade]} | ${subjectNames[currentSubject]} | 0/0`;
+                document.getElementById('pageInfo').textContent = '0/0';
                 return;
             }
 
@@ -610,10 +770,11 @@
             
             document.getElementById('jumpInput').placeholder = currentIndex + 1;
             
-            // 更新内容
+            // 清理内容并更新
+            const cleanHtml = cleanContent(item.content);
             document.getElementById('slideContent').innerHTML = `
                 <h3>${item.title} <span class="tag ${item.tagClass}">${item.tag}</span></h3>
-                ${item.content}
+                ${cleanHtml}
             `;
 
             // 更新按钮状态
@@ -623,13 +784,15 @@
 
         // 导航
         function navigate(direction) {
-            const data = knowledgeBase[currentSubject];
+            const data = gradeData[currentGrade][currentSubject];
+            if (!data || data.length === 0) return;
+            
             const newIndex = currentIndex + direction;
             
             if (newIndex >= 0 && newIndex < data.length) {
                 currentIndex = newIndex;
                 updateSlide();
-                window.scrollTo(0, 0);
+                document.getElementById('mainContent').scrollTop = 0;
             }
         }
 
@@ -637,26 +800,28 @@
         function jumpToFirst() {
             currentIndex = 0;
             updateSlide();
-            window.scrollTo(0, 0);
+            document.getElementById('mainContent').scrollTop = 0;
         }
 
         // 跳转到最后一页
         function jumpToEnd() {
-            currentIndex = knowledgeBase[currentSubject].length - 1;
+            const data = gradeData[currentGrade][currentSubject];
+            if (!data || data.length === 0) return;
+            currentIndex = data.length - 1;
             updateSlide();
-            window.scrollTo(0, 0);
+            document.getElementById('mainContent').scrollTop = 0;
         }
 
         // 跳转到指定页
         function jumpToPage() {
             const input = document.getElementById('jumpInput');
             const pageNum = parseInt(input.value);
-            const data = knowledgeBase[currentSubject];
+            const data = gradeData[currentGrade][currentSubject];
             
-            if (pageNum >= 1 && pageNum <= data.length) {
+            if (data && pageNum >= 1 && pageNum <= data.length) {
                 currentIndex = pageNum - 1;
                 updateSlide();
-                window.scrollTo(0, 0);
+                document.getElementById('mainContent').scrollTop = 0;
             }
             
             input.value = '';
@@ -664,7 +829,7 @@
 
         // 导出Markdown
         function exportMarkdown() {
-            const data = knowledgeBase[currentSubject];
+            const data = gradeData[currentGrade][currentSubject];
             if (!data || data.length === 0) return;
 
             let content = '# 知识点学习笔记\n\n';
@@ -676,9 +841,8 @@
             const item = data[currentIndex];
             content += `## ${item.title}\n\n`;
             
-            // 提取纯文本内容
             const temp = document.createElement('div');
-            temp.innerHTML = item.content;
+            temp.innerHTML = cleanContent(item.content);
             content += temp.textContent + '\n\n';
 
             const blob = new Blob([content], {type: 'text/markdown;charset=utf-8'});
@@ -725,12 +889,15 @@
 
         // 输出统计信息到控制台
         console.log('=== 知识点统计 ===');
-        console.log('语文:', knowledgeBase.chinese.length, '个');
-        console.log('数学:', knowledgeBase.math.length, '个');
-        console.log('英语:', knowledgeBase.english.length, '个');
-        console.log('历史:', knowledgeBase.history.length, '个');
-        console.log('地理:', knowledgeBase.geography.length, '个');
-        console.log('总计:', Object.values(knowledgeBase).reduce((a, b) => a + b.length, 0), '个');
+        for (let grade in gradeData) {
+            console.log(`\n${gradeNames[grade]}:`);
+            for (let subject in gradeData[grade]) {
+                const count = gradeData[grade][subject].length;
+                if (count > 0) {
+                    console.log(`  ${subjectNames[subject]}: ${count}个`);
+                }
+            }
+        }
     </script>
 </body>
 </html>
