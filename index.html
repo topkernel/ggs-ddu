@@ -689,14 +689,25 @@
             // Click left/right half
             const mainContent = document.getElementById('mainContent');
             
+            // Touch events for swipe
+            mainContent.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            }, {passive: false});
+
+            mainContent.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, {passive: false});
+
+            // Click handler
             mainContent.addEventListener('click', function(e) {
                 const width = window.innerWidth;
                 const x = e.clientX;
                 
                 if (x < width / 2) {
-                    navigate(-1); // Left half - previous
+                    navigate(-1);
                 } else {
-                    navigate(1);  // Right half - next
+                    navigate(1);
                 }
             });
         }
