@@ -128,6 +128,7 @@
 
         /* 知识点卡片 - 紧凑 */
         .slide-card {
+            /* No transition - controlled by JS */
             transition: transform 0.25s ease-out, opacity 0.25s ease-out;
         }
         
@@ -737,13 +738,9 @@
                     }
                 }
                 
-                // Spring back animation
-                card.style.transition = 'transform 0.2s ease-out, opacity 0.2s ease-out';
+                // Quick snap back without visible animation
                 card.style.transform = 'translateX(0)';
                 card.style.opacity = '1';
-                setTimeout(function() {
-                    card.style.transition = '';
-                }, 200);
             }, { passive: false });
         }
 
