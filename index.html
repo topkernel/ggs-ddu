@@ -686,29 +686,19 @@
                 }
             });
 
-            // Simple swipe gesture
+            // Click left/right half
             const mainContent = document.getElementById('mainContent');
-            let touchStartX = 0;
-
-            mainContent.addEventListener('touchmove', (e) => {
-                e.preventDefault();
-            }, { passive: false });
-
-            mainContent.addEventListener('touchstart', (e) => {
-                touchStartX = e.changedTouches[0].screenX;
-            }, { passive: false });
-
-            mainContent.addEventListener('touchend', (e) => {
-                const touchEndX = e.changedTouches[0].screenX;
-                const delta = touchEndX - touchStartX;
-                const threshold = window.innerWidth * 0.15;
+            
+            mainContent.addEventListener('click', function(e) {
+                const width = window.innerWidth;
+                const x = e.clientX;
                 
-                if (delta < -threshold) {
-                    navigate(1);  // Swipe left - next
-                } else if (delta > threshold) {
-                    navigate(-1); // Swipe right - previous
+                if (x < width / 2) {
+                    navigate(-1); // Left half - previous
+                } else {
+                    navigate(1);  // Right half - next
                 }
-            }, { passive: false });
+            });
         }
 
         // 更新科目选项
