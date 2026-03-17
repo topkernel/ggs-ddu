@@ -625,9 +625,9 @@
             },
             grade7b: {
                 chinese: ensureArray(typeof knowledgeGrade7bChineseUltra !== 'undefined' ? knowledgeGrade7bChineseUltra : grade7bChineseKnowledge),
-                math: ensureArray(typeof knowledgeGrade7bMathUltra !== 'undefined' ? knowledgeGrade7bMathUltra : (grade7bMathKnowledge ? grade7bMathKnowledge.math : [])),
-                english: ensureArray(typeof knowledgeGrade7bEnglishUltra !== 'undefined' ? knowledgeGrade7bEnglishUltra : grade7bEnglishKnowledge),
-                history: ensureArray(typeof knowledgeGrade7bHistoryUltra !== 'undefined' ? knowledgeGrade7bHistoryUltra : grade7bHistoryKnowledge),
+                math: ensureArray(typeof grade7BMathUltra !== 'undefined' ? grade7BMathUltra : (grade7bMathKnowledge ? grade7bMathKnowledge.math : [])),
+                english: ensureArray(typeof englishGrade7B !== 'undefined' ? englishGrade7B : grade7bEnglishKnowledge),
+                history: ensureArray(typeof knowledgeBase !== 'undefined' ? knowledgeBase : grade7bHistoryKnowledge),
                 geography: ensureArray(grade7bGeographyKnowledge)
             },
             grade8a: {
