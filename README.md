@@ -37,14 +37,20 @@
 
 ```
 ggs-ddu/
-├── index.html                                    # 主页面
-├── knowledge-base-grade7b-chinese-extended.js    # 语文知识点（90个）
-├── knowledge-base-grade7b-math-complete.js       # 数学知识点（50个）
-├── knowledge-base-grade7b-english.js             # 英语知识点（24个）
-├── knowledge-base-grade7b-history.js             # 历史知识点（25个）
-├── knowledge-base-grade7b-geography.js           # 地理知识点（20个）
-├── knowledge-base-grade7b.js                     # 原始知识点库
-└── README.md                                     # 本文件
+├── index.html                          # 主页面
+├── grade7b-chinese.js                  # 语文知识点（90个）
+├── grade7b-math.js                     # 数学知识点（95个）
+├── grade7b-english.js                   # 英语知识点（88个）
+├── grade7b-history.js                   # 历史知识点（25个）
+├── grade7b-geography.js                 # 地理知识点（20个）
+├── grade8b-math.js                     # 8年级数学知识点
+├── grade8b-physics.js                  # 8年级物理知识点
+├── grade9-chemistry.js                 # 9年级化学知识点
+└── data/                               # 文档目录
+    ├── README.md                       # 本文件
+    ├── 界面优化说明.md
+    ├── 知识点库建设计划.md
+    └── 知识点标签系统.md
 ```
 
 ## 🎯 使用方法
