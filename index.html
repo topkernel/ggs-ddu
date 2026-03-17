@@ -706,7 +706,7 @@
                 chinese: flattenKnowledge(typeof grade7bChinese !== 'undefined' ? grade7bChinese : []),
                 math: flattenKnowledge(typeof grade7bMath !== 'undefined' ? grade7bMath : {}).map(kp => convertKnowledgePoint(kp, 'math')),
                 english: flattenKnowledge(typeof grade7bEnglish !== 'undefined' ? grade7bEnglish : {}).map(kp => convertKnowledgePoint(kp, 'english')),
-                history: typeof grade7bHistory !== 'undefined' ? grade7bHistory : [],
+                history: flattenKnowledge(typeof grade7bHistory !== 'undefined' ? grade7bHistory : []),
                 geography: typeof grade7bGeography !== 'undefined' ? grade7bGeography : []
             },
             grade8a: {
