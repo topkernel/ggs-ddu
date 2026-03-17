@@ -128,6 +128,28 @@
 
         /* 知识点卡片 - 紧凑 */
         .slide-card {
+            transition: transform 0.25s ease-out, opacity 0.25s ease-out;
+        }
+        
+        @keyframes slideInLeft {
+            from { transform: translateX(30px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(-30px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .slide-card.animate-left {
+            animation: slideInLeft 0.25s ease-out;
+        }
+        
+        .slide-card.animate-right {
+            animation: slideInRight 0.25s ease-out;
+        }
+        
+        .slide-card {
             max-width: 1000px;
             margin: 0 auto;
             background: white;
@@ -794,9 +816,16 @@
             const newIndex = currentIndex + direction;
             
             if (newIndex >= 0 && newIndex < data.length) {
-                currentIndex = newIndex;
-                updateSlide();
-                document.getElementById('mainContent').scrollTop = 0;
+                // Add animation
+                const card = document.getElementById('slideContent');
+                card.classList.add(direction > 0 ? 'animate-left' : 'animate-right');
+                
+                setTimeout(() => {
+                    currentIndex = newIndex;
+                    updateSlide();
+                    card.classList.remove('animate-left', 'animate-right');
+                    document.getElementById('mainContent').scrollTop = 0;
+                }, 150);
             }
         }
 
