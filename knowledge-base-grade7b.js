@@ -1711,8 +1711,633 @@ const grade7bKnowledge = {
                     </ul>
                 </div>
             `
+        },
+        // ===== 新增数学知识点 =====
+        {
+            title: "25. 平行线判定方法的综合应用",
+            tag: "重点",
+            tagClass: "important",
+            content: `
+                <h4>判定方法</h4>
+                <ul>
+                    <li><strong>同位角相等，两直线平行</strong></li>
+                    <li><strong>内错角相等，两直线平行</strong></li>
+                    <li><strong>同旁内角互补，两直线平行</strong></li>
+                </ul>
+                <div class="advanced">
+                    <h4>⭐ 综合应用技巧</h4>
+                    <ul>
+                        <li>先找"三条线"：截线、被截线1、被截线2</li>
+                        <li>再看位置关系：同位、内错或同旁</li>
+                        <li>最后判断角的数量关系</li>
+                    </ul>
+                </div>
+            `
+        },
+        {
+            title: "26. 平行线性质的综合应用",
+            tag: "重点",
+            tagClass: "important",
+            content: `
+                <h4>平行线性质</h4>
+                <ul>
+                    <li>两直线平行，同位角相等</li>
+                    <li>两直线平行，内错角相等</li>
+                    <li>两直线平行，同旁内角互补</li>
+                </ul>
+                <div class="advanced">
+                    <h4>⭐ 解题步骤</h4>
+                    <ol>
+                        <li>先判定两直线平行</li>
+                        <li>再利用平行线性质求角</li>
+                        <li>注意角的转化和等量代换</li>
+                    </ol>
+                </div>
+            `
+        },
+        {
+            title: "27. 垂线的性质",
+            tag: "基础",
+            tagClass: "basic",
+            content: `
+                <h4>垂线的性质</h4>
+                <ul>
+                    <li><strong>性质1：</strong>在同一平面内，过一点有且只有一条直线与已知直线垂直</li>
+                    <li><strong>性质2：</strong>连接直线外一点与直线上各点的所有线段中，垂线段最短</li>
+                </ul>
+                <div class="advanced">
+                    <h4>⭐ 垂线段最短</h4>
+                    <p>直线外一点到直线的垂线段长度叫做点到直线的距离</p>
+                </div>
+            `
+        },
+        {
+            title: "28. 点到直线的距离",
+            tag: "基础",
+            tagClass: "basic",
+            content: `
+                <h4>定义</h4>
+                <p>从直线外一点到这条直线的垂线段的长度，叫做点到直线的距离</p>
+                <h4>注意</h4>
+                <ul>
+                    <li>距离是垂线段的长度，是一个数值</li>
+                    <li>不能说是"垂线"或"垂线段"</li>
+                </ul>
+            `
+        },
+        {
+            title: "29. 平行线间的距离",
+            tag: "基础",
+            tagClass: "basic",
+            content: `
+                <h4>定义</h4>
+                <p>两条平行线中，一条直线上任意一点到另一条直线的距离</p>
+                <h4>性质</h4>
+                <p><strong>两条平行线间的距离处处相等</strong></p>
+            `
+        },
+        {
+            title: "30. 命题的概念与组成",
+            tag: "基础",
+            tagClass: "basic",
+            content: `
+                <h4>命题的定义</h4>
+                <p>判断一件事情的语句叫做命题</p>
+                <h4>命题的组成</h4>
+                <ul>
+                    <li><strong>题设：</strong>命题中的已知条件</li>
+                    <li><strong>结论：</strong>命题中由条件推出的结果</li>
+                </ul>
+                <div class="example">
+                    <strong>例题：</strong>指出"对顶角相等"的题设和结论<br>
+                    <button class="show-answer" onclick="toggleAnswer(this)">查看答案</button>
+                    <div class="answer">
+                        题设：两个角是对顶角<br>
+                        结论：这两个角相等
+                    </div>
+                </div>
+            `
+        },
+        {
+            title: "31. 真命题与假命题",
+            tag: "基础",
+            tagClass: "basic",
+            content: `
+                <h4>真命题</h4>
+                <p>正确的命题叫做真命题</p>
+                <h4>假命题</h4>
+                <p>错误的命题叫做假命题</p>
+                <div class="advanced">
+                    <h4>⭐ 判断假命题</h4>
+                    <p>只需举出一个反例即可</p>
+                </div>
+            `
+        },
+        {
+            title: "32. 定理与证明",
+            tag: "重点",
+            tagClass: "important",
+            content: `
+                <h4>定理</h4>
+                <p>经过推理证实的真命题叫做定理</p>
+                <h4>证明</h4>
+                <p>根据已知条件和已有定义、定理，经过推理证实结论的过程叫做证明</p>
+            `
+        },
+        {
+            title: "33. 平移的概念",
+            tag: "基础",
+            tagClass: "basic",
+            content: `
+                <h4>平移的定义</h4>
+                <p>将一个图形沿某个方向移动一定的距离，这种图形变换叫做平移</p>
+                <h4>平移的要素</h4>
+                <ul>
+                    <li><strong>方向：</strong>移动的方向</li>
+                    <li><strong>距离：</strong>移动的长度</li>
+                </ul>
+            `
+        },
+        {
+            title: "34. 平移的性质",
+            tag: "重点",
+            tagClass: "important",
+            content: `
+                <h4>平移的性质</h4>
+                <ul>
+                    <li>平移前后图形的形状和大小不变</li>
+                    <li>对应点所连的线段平行且相等</li>
+                    <li>对应角相等</li>
+                </ul>
+            `
+        },
+        {
+            title: "35. 平移的坐标变换",
+            tag: "重点",
+            tagClass: "important",
+            content: `
+                <h4>平移规律</h4>
+                <ul>
+                    <li>向右平移a个单位：(x,y) → (x+a, y)</li>
+                    <li>向左平移a个单位：(x,y) → (x-a, y)</li>
+                    <li>向上平移b个单位：(x,y) → (x, y+b)</li>
+                    <li>向下平移b个单位：(x,y) → (x, y-b)</li>
+                </ul>
+            `
+        },
+        {
+            title: "36. 平方根的概念",
+            tag: "基础",
+            tagClass: "basic",
+            content: `
+                <h4>平方根的定义</h4>
+                <p>如果x²=a，那么x叫做a的平方根，记作±√a</p>
+                <h4>平方根的性质</h4>
+                <ul>
+                    <li>正数有两个平方根，互为相反数</li>
+                    <li>0的平方根是0</li>
+                    <li>负数没有平方根</li>
+                </ul>
+            `
+        },
+        {
+            title: "37. 算术平方根",
+            tag: "基础",
+            tagClass: "basic",
+            content: `
+                <h4>算术平方根的定义</h4>
+                <p>正数a的正的平方根叫做a的算术平方根，记作√a</p>
+                <h4>性质</h4>
+                <ul>
+                    <li>√a ≥ 0</li>
+                    <li>(√a)² = a</li>
+                    <li>√a² = |a|</li>
+                </ul>
+            `
+        },
+        {
+            title: "38. 平方根的计算",
+            tag: "重点",
+            tagClass: "important",
+            content: `
+                <h4>计算方法</h4>
+                <ul>
+                    <li>直接开平方</li>
+                    <li>计算器计算</li>
+                    <li>估算</li>
+                </ul>
+            `
+        },
+        {
+            title: "39. 立方根的概念",
+            tag: "基础",
+            tagClass: "basic",
+            content: `
+                <h4>立方根的定义</h4>
+                <p>如果x³=a，那么x叫做a的立方根，记作∛a</p>
+                <h4>性质</h4>
+                <ul>
+                    <li>正数有一个正的立方根</li>
+                    <li>负数有一个负的立方根</li>
+                    <li>0的立方根是0</li>
+                </ul>
+            `
+        },
+        {
+            title: "40. 立方根的计算",
+            tag: "重点",
+            tagClass: "important",
+            content: `
+                <h4>立方根的性质</h4>
+                <p>∛-a = -∛a</p>
+            `
+        },
+        {
+            title: "41. 实数的概念",
+            tag: "基础",
+            tagClass: "basic",
+            content: `
+                <h4>实数的定义</h4>
+                <p>有理数和无理数统称为实数</p>
+                <h4>分类</h4>
+                <ul>
+                    <li>有理数：整数和分数</li>
+                    <li>无理数：无限不循环小数</li>
+                </ul>
+            `
+        },
+        {
+            title: "42. 无理数的识别",
+            tag: "重点",
+            tagClass: "important",
+            content: `
+                <h4>常见无理数</h4>
+                <ul>
+                    <li>开不尽方的数：√2, √3</li>
+                    <li>含π的数</li>
+                    <li>无限不循环小数</li>
+                </ul>
+            `
+        },
+        {
+            title: "43. 实数的运算",
+            tag: "重点",
+            tagClass: "important",
+            content: `
+                <h4>运算律</h4>
+                <ul>
+                    <li>加法交换律：a+b=b+a</li>
+                    <li>加法结合律：(a+b)+c=a+(b+c)</li>
+                    <li>乘法分配律：a(b+c)=ab+ac</li>
+                </ul>
+            `
+        },
+        {
+            title: "44. 实数的大小比较",
+            tag: "基础",
+            tagClass: "basic",
+            content: `
+                <h4>比较方法</h4>
+                <ul>
+                    <li>平方法</li>
+                    <li>作差法</li>
+                    <li>数轴法</li>
+                </ul>
+            `
+        },
+        {
+            title: "45. 实数与数轴",
+            tag: "拓展",
+            tagClass: "advanced",
+            content: `
+                <h4>对应关系</h4>
+                <p>实数与数轴上的点一一对应</p>
+            `
+        },
+        {
+            title: "46. 平面直角坐标系",
+            tag: "基础",
+            tagClass: "basic",
+            content: `
+                <h4>组成</h4>
+                <ul>
+                    <li>x轴（横轴）：水平向右为正</li>
+                    <li>y轴（纵轴）：竖直向上为正</li>
+                    <li>原点：O(0,0)</li>
+                </ul>
+            `
+        },
+        {
+            title: "47. 点的坐标",
+            tag: "基础",
+            tagClass: "basic",
+            content: `
+                <h4>表示方法</h4>
+                <p>点P(a,b)：a是横坐标，b是纵坐标</p>
+                <h4>坐标轴上的点</h4>
+                <ul>
+                    <li>x轴上：纵坐标为0</li>
+                    <li>y轴上：横坐标为0</li>
+                </ul>
+            `
+        },
+        {
+            title: "48. 象限坐标特征",
+            tag: "重点",
+            tagClass: "important",
+            content: `
+                <ul>
+                    <li>第一象限：a>0, b>0</li>
+                    <li>第二象限：a<0, b>0</li>
+                    <li>第三象限：a<0, b<0</li>
+                    <li>第四象限：a>0, b<0</li>
+                </ul>
+            `
+        },
+        {
+            title: "49. 坐标与距离",
+            tag: "重点",
+            tagClass: "important",
+            content: `
+                <h4>点(a,b)到坐标轴距离</h4>
+                <ul>
+                    <li>到x轴：|b|</li>
+                    <li>到y轴：|a|</li>
+                    <li>到原点：√(a²+b²)</li>
+                </ul>
+            `
+        },
+        {
+            title: "50. 点坐标的对称",
+            tag: "重点",
+            tagClass: "important",
+            content: `
+                <ul>
+                    <li>关于x轴对称：(a,b)→(a,-b)</li>
+                    <li>关于y轴对称：(a,b)→(-a,b)</li>
+                    <li>关于原点对称：(a,b)→(-a,-b)</li>
+                </ul>
+            `
+        },
+        {
+            title: "51. 平移与坐标",
+            tag: "重点",
+            tagClass: "important",
+            content: `
+                <ul>
+                    <li>右移a：横坐标+a</li>
+                    <li>左移a：横坐标-a</li>
+                    <li>上移b：纵坐标+b</li>
+                    <li>下移b：纵坐标-b</li>
+                </ul>
+            `
+        },
+        {
+            title: "52. 坐标与面积",
+            tag: "拓展",
+            tagClass: "advanced",
+            content: `
+                <h4>三角形面积公式</h4>
+                <p>S = |x1(y2-y3)+x2(y3-y1)+x3(y1-y2)|/2</p>
+            `
+        },
+        {
+            title: "53. 二元一次方程组",
+            tag: "基础",
+            tagClass: "basic",
+            content: `
+                <h4>定义</h4>
+                <p>两个二元一次方程组成的方程组</p>
+            `
+        },
+        {
+            title: "54. 方程组的解",
+            tag: "基础",
+            tagClass: "basic",
+            content: `
+                <h4>定义</h4>
+                <p>使方程组各方程均成立的未知数的值</p>
+            `
+        },
+        {
+            title: "55. 代入消元法",
+            tag: "重点",
+            tagClass: "important",
+            content: `
+                <h4>步骤</h4>
+                <ol>
+                    <li>变形：用一未知数表示另一未知数</li>
+                    <li>代入另一方程</li>
+                    <li>求解</li>
+                    <li>回代</li>
+                </ol>
+            `
+        },
+        {
+            title: "56. 加减消元法",
+            tag: "重点",
+            tagClass: "important",
+            content: `
+                <h4>步骤</h4>
+                <ol>
+                    <li>使同一未知数系数相同或相反</li>
+                    <li>相加或相减消元</li>
+                    <li>求解</li>
+                    <li>回代</li>
+                </ol>
+            `
+        },
+        {
+            title: "57. 消元方法选择",
+            tag: "重点",
+            tagClass: "important",
+            content: `
+                <h4>代入法适用</h4>
+                <p>系数为1或-1时</p>
+                <h4>加减法适用</h4>
+                <p>系数相等或成倍数时</p>
+            `
+        },
+        {
+            title: "58. 方程组应用题",
+            tag: "重点",
+            tagClass: "important",
+            content: `
+                <h4>步骤</h4>
+                <ol>
+                    <li>审题找等量关系</li>
+                    <li>设两个未知数</li>
+                    <li>列方程组</li>
+                    <li>求解检验</li>
+                </ol>
+            `
+        },
+        {
+            title: "59. 行程问题",
+            tag: "拓展",
+            tagClass: "advanced",
+            content: `
+                <h4>基本关系</h4>
+                <ul>
+                    <li>路程=速度×时间</li>
+                    <li>相遇：路程和=总路程</li>
+                    <li>追及：路程差=初始距离</li>
+                </ul>
+            `
+        },
+        {
+            title: "60. 工程问题",
+            tag: "拓展",
+            tagClass: "advanced",
+            content: `
+                <h4>基本关系</h4>
+                <p>工作总量=效率×时间</p>
+            `
+        },
+        {
+            title: "61. 利润问题",
+            tag: "拓展",
+            tagClass: "advanced",
+            content: `
+                <h4>基本关系</h4>
+                <ul>
+                    <li>利润=售价-进价</li>
+                    <li>利润率=利润÷进价×100%</li>
+                </ul>
+            `
+        },
+        {
+            title: "62. 不等式概念",
+            tag: "基础",
+            tagClass: "basic",
+            content: `
+                <h4>定义</h4>
+                <p>用>、<、≥、≤表示不等关系的式子</p>
+            `
+        },
+        {
+            title: "63. 不等式性质",
+            tag: "重点",
+            tagClass: "important",
+            content: `
+                <ul>
+                    <li>a>b ⇒ a±c>b±c</li>
+                    <li>a>b, c>0 ⇒ ac>bc</li>
+                    <li>a>b, c<0 ⇒ ac<bc</li>
+                </ul>
+                <p><strong>乘负数要变号！</strong></p>
+            `
+        },
+        {
+            title: "64. 一元一次不等式",
+            tag: "重点",
+            tagClass: "important",
+            content: `
+                <h4>解法步骤</h4>
+                <ol>
+                    <li>去分母</li>
+                    <li>去括号</li>
+                    <li>移项</li>
+                    <li>合并同类项</li>
+                    <li>系数化为1</li>
+                </ol>
+            `
+        },
+        {
+            title: "65. 不等式组解集",
+            tag: "重点",
+            tagClass: "important",
+            content: `
+                <ul>
+                    <li>同大取大</li>
+                    <li>同小取小</li>
+                    <li>大小交叉取中间</li>
+                    <li>矛盾无解</li>
+                </ul>
+            `
+        },
+        {
+            title: "66. 不等式与方程综合",
+            tag: "拓展",
+            tagClass: "advanced",
+            content: `
+                <h4>类型</h4>
+                <ul>
+                    <li>方程解满足不等式</li>
+                    <li>整数解问题</li>
+                    <li>参数范围</li>
+                </ul>
+            `
+        },
+        {
+            title: "67. 全面调查与抽样调查",
+            tag: "基础",
+            tagClass: "basic",
+            content: `
+                <h4>全面调查：调查全体</h4>
+                <h4>抽样调查：抽取部分</h4>
+            `
+        },
+        {
+            title: "68. 总体个体样本",
+            tag: "基础",
+            tagClass: "basic",
+            content: `
+                <ul>
+                    <li>总体：全体对象</li>
+                    <li>个体：每一个对象</li>
+                    <li>样本：抽取的部分</li>
+                    <li>样本容量：样本数目（无单位）</li>
+                </ul>
+            `
+        },
+        {
+            title: "69. 频数与频率",
+            tag: "重点",
+            tagClass: "important",
+            content: `
+                <h4>频数：出现次数</h4>
+                <h4>频率=频数÷总次数</h4>
+                <p>各频率之和=1</p>
+            `
+        },
+        {
+            title: "70. 直方图",
+            tag: "重点",
+            tagClass: "important",
+            content: `
+                <h4>步骤</h4>
+                <ol>
+                    <li>算极差</li>
+                    <li>定组距和组数</li>
+                    <li>列频数表</li>
+                    <li>画直方图</li>
+                </ol>
+            `
+        },
+        {
+            title: "71. 扇形统计图",
+            tag: "基础",
+            tagClass: "basic",
+            content: `
+                <h4>圆心角</h4>
+                <p>=360°×百分比</p>
+            `
+        },
+        {
+            title: "72. 统计图选择",
+            tag: "基础",
+            tagClass: "basic",
+            content: `
+                <ul>
+                    <li>条形图：看数量</li>
+                    <li>折线图：看趋势</li>
+                    <li>扇形图：看百分比</li>
+                    <li>直方图：看分布</li>
+                </ul>
+            `
         }
-        // 继续添加更多知识点...
+        // 数学知识点结束
     ],
     english: [
         {
@@ -2095,8 +2720,355 @@ const grade7bKnowledge = {
                     </div>
                 </div>
             `
+        },
+        // ===== 新增英语知识点 =====
+        {
+            title: "13. There be 句型",
+            tag: "重点",
+            tagClass: "important",
+            content: `
+                <h4>There be 句型</h4>
+                <div class="formula">
+                    肯定句：There is/are + 名词 + 地点<br>
+                    否定句：There is/are + not + 名词 + 地点<br>
+                    疑问句：Is/Are there + 名词 + 地点?
+                </div>
+                <h4>be动词选择</h4>
+                <ul>
+                    <li>be动词取决于后面的名词（就近原则）</li>
+                    <li>可数名词单数或不可数名词用is</li>
+                    <li>可数名词复数用are</li>
+                </ul>
+            `
+        },
+        {
+            title: "14.方位介词",
+            tag: "基础",
+            tagClass: "basic",
+            content: `
+                <h4>方位介词</h4>
+                <ul>
+                    <li><strong>in</strong> 在...里面（in the room）</li>
+                    <li><strong>on</strong> 在...上面（on the wall）</li>
+                    <li><strong>at</strong> 在...（at the bus stop）</li>
+                    <li><strong>in front of</strong> 在...前面</li>
+                    <li><strong>behind</strong> 在...后面</li>
+                    <li><strong>next to</strong> 紧邻</li>
+                    <li><strong>between</strong> 在...之间</li>
+                    <li><strong>among</strong> 在...当中</li>
+                </ul>
+            `
+        },
+        {
+            title: "15. 一般过去时",
+            tag: "重点",
+            tagClass: "important",
+            content: `
+                <h4>定义</h4>
+                <p>表示过去某一时间发生的动作或存在的状态</p>
+                <h4>动词变化规则</h4>
+                <ul>
+                    <li>一般加-ed：play-played</li>
+                    <li>以e结尾加-d：like-liked</li>
+                    <li>辅音+y结尾：y→i加-ed：study-studied</li>
+                    <li>重读闭音节结尾：双写加-ed：stop-stopped</li>
+                    <li>不规则变化：go-went, eat-ate, is-was, are-were</li>
+                </ul>
+            `
+        },
+        {
+            title: "16. 频率副词",
+            tag: "基础",
+            tagClass: "basic",
+            content: `
+                <h4>常见频率副词</h4>
+                <ul>
+                    <li><strong>always</strong> 总是（100%）</li>
+                    <li><strong>usually</strong> 通常（80%）</li>
+                    <li><strong>often</strong> 经常（60%）</li>
+                    <li><strong>sometimes</strong> 有时（40%）</li>
+                    <li><strong>hardly ever</strong> 几乎不（10%）</li>
+                    <li><strong>never</strong> 从不（0%）</li>
+                </ul>
+                <h4>位置</h4>
+                <p>be动词之后，行为动词之前</p>
+            `
+        },
+        {
+            title: "17. 可数名词与不可数名词",
+            tag: "基础",
+            tagClass: "basic",
+            content: `
+                <h4>可数名词</h4>
+                <p>有单复数变化，可用a/an修饰</p>
+                <ul>
+                    <li>单数变复数：加-s/-es</li>
+                    <li>以s/x/z/ch/sh结尾：加-es</li>
+                    <li>辅音+y结尾：y→i加-es</li>
+                </ul>
+                <h4>不可数名词</h4>
+                <p>无复数形式，不能用a/an</p>
+                <ul>
+                    <li>物质名词：水water，面包bread</li>
+                    <li>抽象名词：信息information，建议advice</li>
+                </ul>
+            `
+        },
+        {
+            title: "18. 数量表达",
+            tag: "重点",
+            tagClass: "important",
+            content: `
+                <h4>可数名词数量</h4>
+                <ul>
+                    <li>a/an + 可数名词单数</li>
+                    <li>数词 + 可数名词复数</li>
+                    <li>a lot of/lots of + 可数名词复数</li>
+                </ul>
+                <h4>不可数名词数量</h4>
+                <ul>
+                    <li>a piece of + 不可数名词</li>
+                    <li>a cup of + 不可数名词</li>
+                    <li>some/any + 不可数名词</li>
+                    <li>a lot of/lots of + 不可数名词</li>
+                </ul>
+            `
+        },
+        {
+            title: "19. 形容词比较级",
+            tag: "重点",
+            tagClass: "important",
+            content: `
+                <h4>规则变化</h4>
+                <ul>
+                    <li>一般加-er：tall-taller</li>
+                    <li>以e结尾加-r：nice-nicer</li>
+                    <li>辅音+y结尾：y→i加-er：happy-happier</li>
+                    <li>重读闭音节结尾：双写加-er：big-bigger</li>
+                    <li>多音节词：加more：beautiful-more beautiful</li>
+                </ul>
+                <h4>不规则变化</h4>
+                <ul>
+                    <li>good-better</li>
+                    <li>bad-worse</li>
+                    <li>many/much-more</li>
+                    <li>little-less</li>
+                    <li>far-farther/further</li>
+                </ul>
+            `
+        },
+        {
+            title: "20. 形容词最高级",
+            tag: "重点",
+            tagClass: "important",
+            content: `
+                <h4>规则变化</h4>
+                <ul>
+                    <li>一般加-est：tall-tallest</li>
+                    <li>以e结尾加-st：nice-nicest</li>
+                    <li>辅音+y结尾：y→i加-est：happy-happiest</li>
+                    <li>重读闭音节结尾：双写加-est：big-biggest</li>
+                    <li>多音节词：加most：beautiful-most beautiful</li>
+                </ul>
+                <h4>用法</h4>
+                <p>the + 最高级 + in/of</p>
+            `
+        },
+        {
+            title: "21. 情态动词can/could",
+            tag: "重点",
+            tagClass: "important",
+            content: `
+                <h4>can 的用法</h4>
+                <ul>
+                    <li><strong>能力：</strong>会，能（体力或脑力）</li>
+                    <li><strong>可能性：</strong>可能</li>
+                    <li><strong>许可：</strong>可以</li>
+                </ul>
+                <h4>could 的用法</h4>
+                <ul>
+                    <li>can的过去式（表过去能力）</li>
+                    <li>could比can更委婉礼貌</li>
+                </ul>
+            `
+        },
+        {
+            title: "22. 情态动词may/might",
+            tag: "重点",
+            tagClass: "important",
+            content: `
+                <h4>may 的用法</h4>
+                <ul>
+                    <li><strong>可能性：</strong>可能，也许</li>
+                    <li><strong>许可：</strong>可以（表许可）</li>
+                </ul>
+                <h4>might 的用法</h4>
+                <ul>
+                    <li>may的过去式</li>
+                    <li>比may更委婉（可能性更小）</li>
+                </ul>
+                <h4>回答may问题</h4>
+                <ul>
+                    <li>肯定：Yes, you may. / Yes, please.</li>
+                    <li>否定：No, you can't. / No, you mustn't.</li>
+                </ul>
+            `
+        },
+        {
+            title: "23. 情态动词must/have to",
+            tag: "重点",
+            tagClass: "important",
+            content: `
+                <h4>must 的用法</h4>
+                <ul>
+                    <li><strong>必须：</strong>主观必须</li>
+                    <li><strong>禁止：</strong>mustn't（表示禁止）</li>
+                </ul>
+                <h4>have to 的用法</h4>
+                <ul>
+                    <li>必须：客观需要</li>
+                    <li>第三人称单数：has to</li>
+                    <li>过去式：had to</li>
+                </ul>
+                <h4>mustn't vs don't have to</h4>
+                <ul>
+                    <li>mustn't：禁止（不允许）</li>
+                    <li>don't have to：不必（没有必要）</li>
+                </ul>
+            `
+        },
+        {
+            title: "24. 用how提问",
+            tag: "重点",
+            tagClass: "important",
+            content: `
+                <h4>How is/are...?</h4>
+                <ul>
+                    <li>How is the weather? = What's the weather like?</li>
+                    <li>How are you? 你好吗？</li>
+                </ul>
+                <h4>How + 形容词/副词?</h4>
+                <ul>
+                    <li>How old? 多大（年龄）</li>
+                    <li>How tall? 多高（身高）</li>
+                    <li>How long? 多长（长度）</li>
+                    <li>How far? 多远（距离）</li>
+                    <li>How heavy? 多重（重量）</li>
+                </ul>
+            `
+        },
+        {
+            title: "25. 选择疑问句",
+            tag: "基础",
+            tagClass: "basic",
+            content: `
+                <h4>结构</h4>
+                <p>一般疑问句 + or + 选择项?</p>
+                <h4>例句</h4>
+                <ul>
+                    <li>Is this your book or his book?</li>
+                    <li>Do you like tea or coffee?</li>
+                    <li>Will you go there by bus or by train?</li>
+                </ul>
+                <h4>注意</h4>
+                <p>or前后结构要对称</p>
+            `
+        },
+        {
+            title: "26. 祈使句",
+            tag: "基础",
+            tagClass: "basic",
+            content: `
+                <h4>定义</h4>
+                <p>表示请求、命令、建议的句子</p>
+                <h4>肯定形式</h4>
+                <p>动词原形开头：Please sit down.</p>
+                <h4>否定形式</h4>
+                <p>Don't + 动词原形：Don't talk in class.</p>
+                <h4>Let’s 句型</h4>
+                <p>Let's + 动词原形：Let's go!</p>
+            `
+        },
+        {
+            title: "27. 名词所有格",
+            tag: "基础",
+            tagClass: "basic",
+            content: `
+                <h4>'s 所有格</h4>
+                <ul>
+                    <li>一般加's：Tom's book</li>
+                    <li>以s结尾只加'：the teachers' office</li>
+                    <li>不以s结尾加's：children's day</li>
+                </ul>
+                <h4>of 所有格</h4>
+                <p>用于无生命名词：the window of the room</p>
+                <h4>双重所有格</h4>
+                <p>a friend of my father's</p>
+            `
+        },
+        {
+            title: "28. 感叹句",
+            tag: "基础",
+            tagClass: "basic",
+            content: `
+                <h4>What 引导的感叹句</h4>
+                <ul>
+                    <li>What + a/an + 形容词 + 可数名词单数!</li>
+                    <li>What + 形容词 + 可数名词复数/不可数名词!</li>
+                </ul>
+                <h4>How 引导的感叹句</h4>
+                <ul>
+                    <li>How + 形容词 + 主语 + 谓语!</li>
+                    <li>How + 副词 + 主语 + 谓语!</li>
+                </ul>
+                <h4>例句</h4>
+                <ul>
+                    <li>What a beautiful girl she is!</li>
+                    <li>How fast he runs!</li>
+                </ul>
+            `
+        },
+        {
+            title: "29. 时间表达",
+            tag: "基础",
+            tagClass: "basic",
+            content: `
+                <h4>几点钟</h4>
+                <p>基数词 + o'clock / 直接读数字</p>
+                <h4>几点几分</h4>
+                <ul>
+                    <li>30分以内：分钟 + past + 小时</li>
+                    <li>30分以外：60 - 分钟 + to + (小时+1)</li>
+                    <li>15分：a quarter</li>
+                    <li>30分：half</li>
+                </ul>
+                <h4>例句</h4>
+                <ul>
+                    <li>7:15 - a quarter past seven / seven fifteen</li>
+                    <li>8:30 - half past eight / eight thirty</li>
+                    <li>9:45 - a quarter to ten / nine forty-five</li>
+                </ul>
+            `
+        },
+        {
+            title: "30. 日期表达",
+            tag: "基础",
+            tagClass: "basic",
+            content: `
+                <h4>月份</h4>
+                <p>January, February, March, April, May, June, July, August, September, October, November, December</p>
+                <h4>日期序数词</h4>
+                <ul>
+                    <li>1st first, 2nd second, 3rd third</li>
+                    <li>其余加th：4th fourth</li>
+                    <li>特殊：5th fifth, 8th eighth, 9th ninth, 12th twelfth</li>
+                </ul>
+                <h4>表达方式</h4>
+                <p>月份 + 日期，年份<br>
+                March 17th, 2026 / March 17, 2026</p>
+            `
         }
-        // 继续添加更多知识点...
+        // 英语知识点结束
     ],
     history: [
         {
