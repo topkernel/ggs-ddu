@@ -441,6 +441,15 @@
                     <option value="geography">🌍 地理</option>
                 </select>
             </div>
+            <div class="settings-group">
+                <label class="settings-label">导出功能</label>
+                <button class="settings-select" onclick="exportMarkdown(); toggleSettings();" style="width: 100%; text-align: left;">
+                    📝 导出当前知识点为Markdown
+                </button>
+                <button class="settings-select" onclick="window.print(); toggleSettings();" style="width: 100%; text-align: left; margin-top: 5px;">
+                    🖨 打印或保存为PDF
+                </button>
+            </div>
         </div>
 
         <!-- 主内容区 -->
