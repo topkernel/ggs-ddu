@@ -686,61 +686,28 @@
                 }
             });
 
-            // Real-time drag gesture
+            // Simple swipe gesture
             const mainContent = document.getElementById('mainContent');
             let touchStartX = 0;
-            let touchCurrentX = 0;
-            let isDragging = false;
-            let dragOffset = 0;
 
-            // Prevent page scroll
             mainContent.addEventListener('touchmove', (e) => {
                 e.preventDefault();
             }, { passive: false });
 
             mainContent.addEventListener('touchstart', (e) => {
                 touchStartX = e.changedTouches[0].screenX;
-                touchCurrentX = touchStartX;
-                isDragging = true;
-                dragOffset = 0;
-            }, { passive: false });
-
-            mainContent.addEventListener('touchmove', (e) => {
-                if (!isDragging) return;
-                const card = document.getElementById('slideContent');
-                touchCurrentX = e.changedTouches[0].screenX;
-                let deltaX = touchCurrentX - touchStartX;
-                const maxDrag = window.innerWidth * 0.4;
-                deltaX = Math.max(-maxDrag, Math.min(maxDrag, deltaX));
-                card.style.transform = 'translateX(' + deltaX + 'px)';
-                card.style.opacity = 1 - Math.abs(deltaX) / maxDrag * 0.3;
-                dragOffset = deltaX;
             }, { passive: false });
 
             mainContent.addEventListener('touchend', (e) => {
-                if (!isDragging) return;
-                isDragging = false;
-                const card = document.getElementById('slideContent');
-                
-                // Calculate total swipe distance
                 const touchEndX = e.changedTouches[0].screenX;
-                const totalDelta = touchEndX - touchStartX;
+                const delta = touchEndX - touchStartX;
+                const threshold = window.innerWidth * 0.15;
                 
-                // Threshold for quick swipe: 15% of screen width
-                const quickThreshold = window.innerWidth * 0.15;
-                
-                // If quick swipe, always navigate
-                if (Math.abs(totalDelta) > quickThreshold) {
-                    if (totalDelta < 0) {
-                        navigate(1);  // Swipe left - next
-                    } else {
-                        navigate(-1); // Swipe right - previous
-                    }
+                if (delta < -threshold) {
+                    navigate(1);  // Swipe left - next
+                } else if (delta > threshold) {
+                    navigate(-1); // Swipe right - previous
                 }
-                
-                // Quick snap back without visible animation
-                card.style.transform = 'translateX(0)';
-                card.style.opacity = '1';
             }, { passive: false });
         }
 
