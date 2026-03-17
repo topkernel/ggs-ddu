@@ -497,6 +497,36 @@
             }
             return [];
         }
+        
+        // 展平嵌套的知识库结构
+        function flattenKnowledge(data) {
+            if (!data) return [];
+            if (Array.isArray(data)) return data;
+            if (data.units) {
+                let result = [];
+                for (let unit of data.units) {
+                    if (unit.knowledgePoints) result = result.concat(unit.knowledgePoints);
+                    else if (unit.pts) result = result.concat(unit.pts);
+                }
+                return result;
+            }
+            if (data.chapters) {
+                let result = [];
+                for (let chapter of data.chapters) {
+                    if (chapter.knowledgePoints) result = result.concat(chapter.knowledgePoints);
+                }
+                return result;
+            }
+            if (data.chapter1) {
+                let result = [];
+                for (let i = 1; i <= 6; i++) {
+                    let chapter = data['chapter' + i];
+                    if (chapter && chapter.knowledgePoints) result = result.concat(chapter.knowledgePoints);
+                }
+                return result;
+            }
+            return [];
+        }
 
         // 清理内容中的图片引用
         function cleanContent(html) {
@@ -624,10 +654,10 @@
                 geography: []
             },
             grade7b: {
-                chinese: ensureArray(typeof knowledgeGrade7bChineseUltra !== 'undefined' ? knowledgeGrade7bChineseUltra : grade7bChineseKnowledge),
-                math: ensureArray(typeof grade7BMathUltra !== 'undefined' ? grade7BMathUltra : (grade7bMathKnowledge ? grade7bMathKnowledge.math : [])),
-                english: ensureArray(typeof englishGrade7B !== 'undefined' ? englishGrade7B : grade7bEnglishKnowledge),
-                history: ensureArray(typeof knowledgeBase !== 'undefined' ? knowledgeBase : grade7bHistoryKnowledge),
+                chinese: flattenKnowledge(typeof knowledgeGrade7bChineseUltra !== 'undefined' ? knowledgeGrade7bChineseUltra : grade7bChineseKnowledge),
+                math: flattenKnowledge(typeof grade7BMathUltra !== 'undefined' ? grade7BMathUltra : (grade7bMathKnowledge ? grade7bMathKnowledge.math : [])),
+                english: flattenKnowledge(typeof englishGrade7B !== 'undefined' ? englishGrade7B : grade7bEnglishKnowledge),
+                history: flattenKnowledge(typeof knowledgeBase !== 'undefined' ? knowledgeBase : grade7bHistoryKnowledge),
                 geography: ensureArray(grade7bGeographyKnowledge)
             },
             grade8a: {
