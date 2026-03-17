@@ -7,10 +7,7 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        body {
-            font-family: 'Microsoft YaHei', sans-serif;
-            background: #f5f5f5;
-            overflow: hidden;
+        body { overflow: hidden; touch-action: none;
         }
 
         .container {
@@ -122,7 +119,7 @@
         /* 主内容区 - 固定高度，内部滚�?*/
         .main-content {
             flex: 1;
-            overflow-y: auto;
+            overflow-y: hidden;
             overflow-x: hidden;
             padding: 15px 25px;
             touch-action: pan-y;
@@ -130,6 +127,29 @@
         }
 
         /* 知识点卡�?- 紧凑 */
+        .slide-card {
+            /* No transition - controlled by JS */
+            transition: transform 0.25s ease-out, opacity 0.25s ease-out;
+        }
+        
+        @keyframes slideInLeft {
+            from { transform: translateX(30px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(-30px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .slide-card.animate-left {
+            animation: slideInLeft 0.25s ease-out;
+        }
+        
+        .slide-card.animate-right {
+            animation: slideInRight 0.25s ease-out;
+        }
+        
         .slide-card {
             max-width: 1000px;
             margin: 0 auto;
@@ -456,11 +476,11 @@
     </div>
 
     <!-- 加载知识点库 -->
-    <script src="knowledge-base-grade7b-chinese-extended.js"></script>
-    <script src="knowledge-base-grade7b-math-complete.js"></script>
-    <script src="knowledge-base-grade7b-english.js"></script>
-    <script src="knowledge-base-grade7b-history.js"></script>
-    <script src="knowledge-base-grade7b-geography.js"></script>
+    <script src="knowledge-grade7b-chinese-ultra.js"></script>
+    <script src="knowledge-grade7b-math-ultra.js"></script>
+    <script src="knowledge-grade7b-english-ultra.js"></script>
+    <script src="knowledge-grade7b-history-ultra.js"></script>
+    <script src="knowledge-grade7b-english-ultra.js"></script>
 
     <script>
         // 数据处理函数
@@ -666,17 +686,30 @@
                 }
             });
 
-            // 触摸滑动支持
+            // Click left/right half
             const mainContent = document.getElementById('mainContent');
             
-            mainContent.addEventListener('touchstart', (e) => {
+            // Touch events for swipe
+            mainContent.addEventListener('touchstart', function(e) {
                 touchStartX = e.changedTouches[0].screenX;
-            }, { passive: true });
+            }, {passive: false});
 
-            mainContent.addEventListener('touchend', (e) => {
+            mainContent.addEventListener('touchend', function(e) {
                 touchEndX = e.changedTouches[0].screenX;
                 handleSwipe();
-            }, { passive: true });
+            }, {passive: false});
+
+            // Click handler
+            mainContent.addEventListener('click', function(e) {
+                const width = window.innerWidth;
+                const x = e.clientX;
+                
+                if (x < width / 2) {
+                    navigate(-1);
+                } else {
+                    navigate(1);
+                }
+            });
         }
 
         // 更新科目选项
@@ -792,9 +825,16 @@
             const newIndex = currentIndex + direction;
             
             if (newIndex >= 0 && newIndex < data.length) {
-                currentIndex = newIndex;
-                updateSlide();
-                document.getElementById('mainContent').scrollTop = 0;
+                // Add animation
+                const card = document.getElementById('slideContent');
+                card.classList.add(direction > 0 ? 'animate-left' : 'animate-right');
+                
+                setTimeout(() => {
+                    currentIndex = newIndex;
+                    updateSlide();
+                    card.classList.remove('animate-left', 'animate-right');
+                    document.getElementById('mainContent').scrollTop = 0;
+                }, 150);
             }
         }
 

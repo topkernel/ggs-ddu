@@ -475,12 +475,11 @@
         </div>
     </div>
 
-    <!-- 加载知识点库 -->
-    <script src="knowledge-base-grade7b-chinese-extended.js"></script>
-    <script src="knowledge-base-grade7b-math-complete.js"></script>
-    <script src="knowledge-base-grade7b-english.js"></script>
-    <script src="knowledge-base-grade7b-history.js"></script>
-    <script src="knowledge-base-grade7b-geography.js"></script>
+    <!-- 加载知识点库 - 超详细版 -->
+    <script src="knowledge-grade7b-chinese-ultra.js"></script>
+    <script src="knowledge-grade7b-math-ultra.js"></script>
+    <script src="knowledge-grade7b-english-ultra.js"></script>
+    <script src="knowledge-grade7b-history-ultra.js"></script>
 
     <script>
         // 数据处理函数
@@ -625,10 +624,10 @@
                 geography: []
             },
             grade7b: {
-                chinese: ensureArray(grade7bChineseKnowledge),
-                math: grade7bMathKnowledge ? ensureArray(grade7bMathKnowledge.math) : [],
-                english: ensureArray(grade7bEnglishKnowledge),
-                history: ensureArray(grade7bHistoryKnowledge),
+                chinese: ensureArray(typeof knowledgeGrade7bChineseUltra !== 'undefined' ? knowledgeGrade7bChineseUltra : grade7bChineseKnowledge),
+                math: ensureArray(typeof knowledgeGrade7bMathUltra !== 'undefined' ? knowledgeGrade7bMathUltra : (grade7bMathKnowledge ? grade7bMathKnowledge.math : [])),
+                english: ensureArray(typeof knowledgeGrade7bEnglishUltra !== 'undefined' ? knowledgeGrade7bEnglishUltra : grade7bEnglishKnowledge),
+                history: ensureArray(typeof knowledgeGrade7bHistoryUltra !== 'undefined' ? knowledgeGrade7bHistoryUltra : grade7bHistoryKnowledge),
                 geography: ensureArray(grade7bGeographyKnowledge)
             },
             grade8a: {
