@@ -1,5 +1,5 @@
 // 7年级下学期地理完整知识点库（30个知识点）
-const grade7bGeographyKnowledge = [
+const grade7bGeography = [
     // 第六章：亚洲（10个知识点）
     {
         title: "1. 亚洲的位置和范围",

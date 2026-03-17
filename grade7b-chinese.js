@@ -1,5 +1,5 @@
 // 7年级下学期语文完整知识点库（扩展版）
-const grade7bChineseKnowledge = {
+const grade7bChinese = {
     // 第一单元：杰出人物（30个知识点）
     unit1: [
         // 邓稼先相关（10个知识点）

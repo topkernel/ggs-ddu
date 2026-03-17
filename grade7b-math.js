@@ -2,7 +2,7 @@
 // 6章内容，每章15+知识点，总计95个知识点
 // 标签分布：必考(20%)、重点(30%)、基础(40%)、拓展(10%)
 
-const knowledgeBase = {
+const grade7bMath = {
   version: "1.0",
   grade: "7年级下",
   publisher: "北师大版",

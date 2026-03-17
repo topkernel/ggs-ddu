@@ -1,5 +1,5 @@
 // 7年级下学期历史完整知识点库
-const grade7bHistoryKnowledge = [
+const grade7bHistory = [
     // 第一单元：隋唐时期（25个知识点）
     {
         title: "1. 隋朝的统一与灭亡",

@@ -2,7 +2,7 @@
 // 8个单元，80+知识点
 // 标签分布：必考20%、重点30%、基础40%、拓展10%
 
-const knowledgeBase = {
+const grade7bEnglish = {
   version: "1.0",
   grade: "七年级下册",
   textbook: "牛津深圳版",
