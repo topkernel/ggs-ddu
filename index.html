@@ -461,19 +461,17 @@
         <div class="nav-bar">
             <div class="nav-left">
                 <button class="icon-btn" id="prevBtn" onclick="navigate(-1)" title="上一页">◀</button>
-                <button class="icon-btn" onclick="navigate(-10)" title="后退10页">⏪</button>
                 <button class="icon-btn" onclick="jumpToFirst()" title="第一页">⏮</button>
             </div>
-            
+
             <div class="nav-center">
                 <input type="number" class="jump-input" id="jumpInput" min="1" placeholder="1" title="输入页码">
                 <span class="page-info" id="pageInfo">1/90</span>
                 <button class="icon-btn" onclick="jumpToPage()" title="跳转">↵</button>
             </div>
-            
+
             <div class="nav-right">
                 <button class="icon-btn" onclick="jumpToEnd()" title="最后一页">⏭</button>
-                <button class="icon-btn" onclick="navigate(10)" title="前进10页">⏩</button>
                 <button class="icon-btn" id="nextBtn" onclick="navigate(1)" title="下一页">▶</button>
                 <span style="color: rgba(255,255,255,0.3); margin: 0 3px;">|</span>
                 <button class="icon-btn" onclick="exportMarkdown()" title="保存为Markdown">📝</button>
