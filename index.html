@@ -14,14 +14,14 @@
                 <h1>📚 知识点</h1>
                 <span class="stats-text" id="statsText">7下 | 语文 | 1/90</span>
             </div>
-            <button class="settings-btn" onclick="toggleSettings()">⚙️ 设置</button>
+            <button class="settings-btn" onclick="App.toggleSettings()">⚙️ 设置</button>
         </div>
 
         <!-- 设置面板 -->
         <div class="settings-panel" id="settingsPanel">
             <div class="settings-group">
                 <label class="settings-label">选择年级</label>
-                <select class="settings-select" id="gradeSelect">
+                <select class="settings-select" id="gradeSelect" onchange="App.changeGrade()">
                     <option value="grade2">2年级下学期</option>
                     <option value="grade7a">7年级上学期</option>
                     <option value="grade7b" selected>7年级下学期</option>
@@ -31,7 +31,7 @@
             </div>
             <div class="settings-group">
                 <label class="settings-label">选择科目</label>
-                <select class="settings-select" id="subjectSelect">
+                <select class="settings-select" id="subjectSelect" onchange="App.changeSubject()">
                     <option value="chinese" selected>📖 语文</option>
                     <option value="math">🔢 数学</option>
                     <option value="english">🇬🇧 英语</option>
